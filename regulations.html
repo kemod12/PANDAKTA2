@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peraturan-Peraturan K3</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/header.css">
+    <link rel="stylesheet" href="assets/footer.css">
+    <style>
+        :root {
+            --primary-blue: #4BA3C3;
+            --teal: #58B09C;
+            --light-gray: #F5F5F5;
+            --dark-gray: #333;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .regulations-hero {
+            background: linear-gradient(135deg, var(--primary-blue), var(--teal));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .regulations-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .regulations-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            padding: 3rem 0;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .intro-text h2 {
+            color: var(--primary-blue);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro-text p {
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .regulations-table {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .table-header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 1.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .regulation-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+        }
+
+        .regulation-row:last-child {
+            border-bottom: none;
+        }
+
+        .regulation-row:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .regulation-name {
+            font-weight: 600;
+            color: var(--dark-gray);
+            font-size: 1rem;
+        }
+
+        .regulation-description {
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        .download-btn {
+            background: var(--teal);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .download-btn:hover {
+            background: #4a9b8a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(88, 176, 156, 0.3);
+        }
+
+        .download-btn i {
+            margin-right: 0.5rem;
+        }
+
+        .legal-icon {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .regulation-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .regulations-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .download-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <!-- Hero Section -->
+    <section class="regulations-hero">
+        <div class="container mx-auto px-4">
+            <h1>⚖️ Peraturan-Peraturan K3</h1>
+            <p>Dasar hukum dan regulasi yang mengatur keselamatan kerja di laboratorium</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <div class="container mx-auto px-4">
+            <div class="intro-text">
+                <i class="fas fa-balance-scale legal-icon"></i>
+                <h2>Dasar Hukum K3 Laboratorium</h2>
+                <p>Penerapan K3 di laboratorium didasarkan pada berbagai peraturan dan regulasi yang telah ditetapkan oleh pemerintah. Berikut adalah dokumen-dokumen penting yang wajib dipahami dan dipatuhi oleh semua personel laboratorium.</p>
+            </div>
+
+            <div class="regulations-table">
+                <div class="table-header">
+                    <div style="display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 1rem;">
+                        <div>Nama Peraturan</div>
+                        <div>Deskripsi</div>
+                        <div>Aksi Unduh</div>
+                    </div>
+                </div>
+
+                <div class="regulation-row">
+                    <div class="regulation-name">
+                        Undang-Undang No.1 Tahun 1970
+                    </div>
+                    <div class="regulation-description">
+                        Undang-undang tentang Keselamatan Kerja yang menjadi dasar hukum utama dalam penerapan keselamatan kerja di Indonesia, termasuk di lingkungan laboratorium.
+                    </div>
+                    <div>
+                        <a href="https://drive.google.com/file/d/1JMcCku94gY_F7NyvqZH4MUE_t0T90vjD/view?usp=drive_link" 
+                           target="_blank" 
+                           class="download-btn">
+                            <i class="fas fa-download"></i>
+                            Unduh PDF
+                        </a>
+                    </div>
+                </div>
+
+                <div class="regulation-row">
+                    <div class="regulation-name">
+                        Permenaker No.5 Tahun 2018
+                    </div>
+                    <div class="regulation-description">
+                        Peraturan Menteri Ketenagakerjaan tentang Keselamatan dan Kesehatan Kerja Lingkungan Kerja yang mengatur standar K3 di berbagai jenis lingkungan kerja.
+                    </div>
+                    <div>
+                        <a href="https://drive.google.com/file/d/1UXZGKgIhkNqRRbkQ7PCNXRQYfKcgDOaM/view?usp=sharing" 
+                           target="_blank" 
+                           class="download-btn">
+                            <i class="fas fa-download"></i>
+                            Unduh PDF
+                        </a>
+                    </div>
+                </div>
+
+                <div class="regulation-row">
+                    <div class="regulation-name">
+                        Pedoman K3 & Keamanan BPOM
+                    </div>
+                    <div class="regulation-description">
+                        Pedoman khusus Badan Pengawas Obat dan Makanan tentang Keselamatan dan Keamanan Kerja di laboratorium pengujian obat dan makanan.
+                    </div>
+                    <div>
+                        <a href="https://drive.google.com/file/d/1JB9jQpT2z2-yH-KkoIDGoyv4y4uj1CdR/view?usp=sharing" 
+                           target="_blank" 
+                           class="download-btn">
+                            <i class="fas fa-download"></i>
+                            Unduh PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Information -->
+            <div style="margin-top: 3rem; padding: 2rem; background: var(--light-gray); border-radius: 15px;">
+                <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">
+                    <i class="fas fa-info-circle"></i> Informasi Penting
+                </h3>
+                <ul style="color: var(--dark-gray); line-height: 1.8;">
+                    <li>Semua peraturan ini wajib dipahami dan dipatuhi oleh seluruh personel laboratorium</li>
+                    <li>Dokumen-dokumen ini dapat diunduh dan disimpan untuk referensi</li>
+                    <li>Peraturan dapat diperbarui sesuai dengan perkembangan hukum yang berlaku</li>
+                    <li>Untuk pertanyaan lebih lanjut, hubungi supervisor atau petugas K3 laboratorium</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <div id="site-footer"></div>
+    <script>
+      document.addEventListener('DOMContentLoaded', async () => {
+        try {
+          const parser = new DOMParser();
+          const [hRes, fRes] = await Promise.all([
+            fetch('header.html'),
+            fetch('footer.html')
+          ]);
+          const hText = await hRes.text();
+          const fText = await fRes.text();
+          const hDoc = parser.parseFromString(hText, 'text/html');
+          const fDoc = parser.parseFromString(fText, 'text/html');
+          const headerEl = hDoc.querySelector('header');
+          const footerEl = fDoc.querySelector('footer');
+          const headerMount = document.getElementById('site-header');
+          const footerMount = document.getElementById('site-footer');
+          if (headerEl && headerMount) headerMount.innerHTML = headerEl.outerHTML;
+          if (footerEl && footerMount) footerMount.innerHTML = footerEl.outerHTML;
+
+          // Ensure Bootstrap Icons CSS is present
+          if (!document.querySelector('link[href*="bootstrap-icons"]')) {
+            const bi = document.createElement('link');
+            bi.rel = 'stylesheet';
+            bi.href = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css';
+            document.head.appendChild(bi);
+          }
+
+          // Ensure shared header CSS is present
+          if (!document.querySelector('link[href$="assets/header.css"]')) {
+            const hdr = document.createElement('link');
+            hdr.rel = 'stylesheet';
+            hdr.href = 'assets/header.css';
+            document.head.appendChild(hdr);
+          }
+
+          // Ensure shared footer CSS is present
+          if (!document.querySelector('link[href$="assets/footer.css"]')) {
+            const ftr = document.createElement('link');
+            ftr.rel = 'stylesheet';
+            ftr.href = 'assets/footer.css';
+            document.head.appendChild(ftr);
+          }
+
+          // Highlight active menu item (robust by page + hash or ?s=)
+          const currentPage = location.pathname.split('/').pop() || 'regulations.html';
+          const params = new URLSearchParams(location.search);
+          const sectionFromQuery = params.get('s');
+          const currentHash = location.hash || (sectionFromQuery ? ('#' + sectionFromQuery) : '');
+          document.querySelectorAll('.navbar a[href]').forEach(a => {
+            try {
+              const aUrl = new URL(a.getAttribute('href'), location.origin);
+              const aPage = aUrl.pathname.split('/').pop();
+              const aHash = aUrl.hash;
+              if (aPage === currentPage) {
+                if (currentHash) {
+                  if (aHash && aHash === currentHash) a.classList.add('active');
+                } else if (!aHash) {
+                  a.classList.add('active');
+                }
+              }
+            } catch(_) {}
+          });
+        } catch (e) { console.error('Failed loading header/footer:', e); }
+      });
+    </script>
+</body>
+</html>

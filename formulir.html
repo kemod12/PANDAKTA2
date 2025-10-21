@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Pelaporan Kecelakaan Kerja</title>
+    <link rel="stylesheet" href="assets/header.css">
+    <link rel="stylesheet" href="assets/footer.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --safety-blue: #1E3A8A;
+            --safety-yellow: #FACC15;
+            --light-blue: #E0F2FE;
+            --dark-gray: #1F2937;
+            --medium-gray: #6B7280;
+            --light-gray: #F9FAFB;
+            --white: #FFFFFF;
+            --border-gray: #E5E7EB;
+            --success-green: #10B981;
+            --warning-orange: #F59E0B;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .reporting-hero {
+            background: linear-gradient(135deg, var(--safety-blue), #3B82F6);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reporting-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .reporting-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .reporting-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content-section {
+            padding: 3rem 0;
+            background: var(--light-gray);
+        }
+
+        .introduction-section {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .introduction-section h2 {
+            color: var(--safety-blue);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .introduction-section p {
+            color: var(--dark-gray);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            text-align: justify;
+            margin-bottom: 1rem;
+        }
+
+        .regulation-badge {
+            display: inline-block;
+            background: var(--safety-yellow);
+            color: var(--dark-gray);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .flow-section {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .flow-title {
+            color: var(--safety-blue);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .flow-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .flow-step {
+            background: white;
+            border: 3px solid var(--safety-blue);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .flow-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-color: var(--safety-yellow);
+        }
+
+        .flow-step::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: var(--safety-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2rem;
+            z-index: 10;
+        }
+
+        .flow-step.step-1::before {
+            content: '1';
+        }
+
+        .flow-step.step-2::before {
+            content: '2';
+        }
+
+        .flow-step-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--safety-blue);
+        }
+
+        .flow-step-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .flow-step-description {
+            color: var(--medium-gray);
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .flow-step-link {
+            display: inline-block;
+            background: var(--safety-blue);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flow-step-link:hover {
+            background: #1E40AF;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .flow-step-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .flow-step-link:hover::before {
+            left: 100%;
+        }
+
+        .flow-connector {
+            width: 4px;
+            height: 3rem;
+            background: linear-gradient(to bottom, var(--safety-blue), var(--safety-yellow));
+            position: relative;
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        .flow-connector::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: var(--safety-yellow);
+            border-radius: 50%;
+            border: 3px solid var(--safety-blue);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .tooltip {
+            position: relative;
+            cursor: help;
+        }
+
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark-gray);
+            color: white;
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            max-width: 300px;
+            white-space: normal;
+            text-align: center;
+        }
+
+        .tooltip::before {
+            content: '';
+            position: absolute;
+            bottom: 115%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--dark-gray);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .tooltip:hover::after,
+        .tooltip:hover::before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cta-section {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .cta-title {
+            color: var(--safety-blue);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 1.2rem 2rem;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            min-width: 250px;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn-primary {
+            background: var(--safety-blue);
+            color: white;
+        }
+
+        .cta-btn-secondary {
+            background: var(--safety-yellow);
+            color: var(--dark-gray);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .cta-btn-primary:hover {
+            background: #1E40AF;
+        }
+
+        .cta-btn-secondary:hover {
+            background: #F59E0B;
+        }
+
+        .notice-section {
+            background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+            border: 2px solid var(--warning-orange);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .notice-title {
+            color: #92400E;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .notice-text {
+            color: #92400E;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .reporting-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .flow-step {
+                padding: 1.5rem;
+            }
+            
+            .flow-step-icon {
+                font-size: 2.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .introduction-section,
+            .flow-section,
+            .cta-section {
+                padding: 2rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .flow-step {
+                padding: 1rem;
+            }
+            
+            .flow-step-icon {
+                font-size: 2rem;
+            }
+            
+            .flow-step-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <!-- Hero Section -->
+    <section class="reporting-hero">
+        <div class="container mx-auto px-4">
+            <h1>📋 Formulir Pelaporan Kecelakaan Kerja</h1>
+            <p>Laporan kecelakaan kerja wajib dibuat sesuai Permenaker No.03/MEN/1998 tentang Pelaporan dan Pemeriksaan Kecelakaan</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <div class="container mx-auto px-4">
+            <!-- Introduction Section -->
+            <div class="introduction-section">
+                <h2>📖 Dasar Hukum dan Pentingnya Pelaporan</h2>
+                <p>Berdasarkan Peraturan Menteri Tenaga Kerja No.03/MEN/1998, setiap kecelakaan kerja di tempat kerja wajib dilaporkan oleh pihak terkait. Tujuan pelaporan ini adalah untuk melakukan investigasi, mencegah kejadian serupa, dan menjamin perlindungan bagi tenaga kerja yang menjadi korban.</p>
+                <p>Pelaporan kecelakaan kerja merupakan kewajiban hukum yang harus dipenuhi oleh setiap perusahaan atau instansi. Dengan pelaporan yang tepat waktu dan akurat, dapat dilakukan analisis penyebab kecelakaan dan pengambilan langkah-langkah pencegahan yang efektif.</p>
+                <div class="regulation-badge">Permenaker No.03/MEN/1998</div>
+            </div>
+
+            <!-- Flow Diagram Section -->
+            <div class="flow-section">
+                <h2 class="flow-title">🔄 Alur Pelaporan Kecelakaan Kerja</h2>
+                
+                <div class="flow-container">
+                    <!-- Step 1 -->
+                    <div class="flow-step step-1 tooltip" data-tooltip="Langkah pertama dalam proses pelaporan kecelakaan kerja">
+                        <div class="flow-step-icon">🧍‍♂️</div>
+                        <h3 class="flow-step-title">Korban Mengisi Formulir Online</h3>
+                        <p class="flow-step-description">
+                            Korban atau saksi langsung mengisi laporan awal melalui tautan formulir online resmi. 
+                            Formulir ini harus diisi segera setelah kejadian untuk memastikan informasi yang akurat dan lengkap.
+                        </p>
+                        <div style="text-align: center;">
+                            <a href="https://forms.gle/5B5wkytiD75CR9bv6" target="_blank" class="flow-step-link tooltip" data-tooltip="Gunakan formulir ini untuk melaporkan kejadian segera setelah insiden terjadi">
+                                <i class="fas fa-external-link-alt"></i>
+                                Formulir Online Pelaporan Kecelakaan
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Connecting Line -->
+                    <div class="flow-connector"></div>
+
+                    <!-- Step 2 -->
+                    <div class="flow-step step-2 tooltip" data-tooltip="Langkah kedua untuk dokumentasi resmi dan arsip">
+                        <div class="flow-step-icon">🧾</div>
+                        <h3 class="flow-step-title">Petugas Mengisi Formulir Hard Copy</h3>
+                        <p class="flow-step-description">
+                            Setelah laporan online diterima, petugas K3 atau pengawas mengisi formulir fisik sesuai format standar. 
+                            Dokumen ini digunakan untuk arsip resmi dan pelaporan kepada pihak berwenang.
+                        </p>
+                        <div style="text-align: center;">
+                            <a href="https://docs.google.com/document/d/10aFCg7mc7iUnBNdlOq8RBw8l_E0HKGdq/edit?usp=sharing" target="_blank" class="flow-step-link tooltip" data-tooltip="Form ini digunakan untuk dokumentasi resmi dan arsip internal instansi">
+                                <i class="fas fa-file-alt"></i>
+                                Formulir Hard Copy (Google Docs)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <h2 class="cta-title">🚀 Mulai Pelaporan Sekarang</h2>
+                <div class="cta-buttons">
+                    <a href="https://forms.gle/5B5wkytiD75CR9bv6" target="_blank" class="cta-btn cta-btn-primary">
+                        <i class="fas fa-edit"></i>
+                        Isi Form Online Sekarang
+                    </a>
+                    <a href="https://docs.google.com/document/d/10aFCg7mc7iUnBNdlOq8RBw8l_E0HKGdq/edit?usp=sharing" target="_blank" class="cta-btn cta-btn-secondary">
+                        <i class="fas fa-eye"></i>
+                        Lihat Format Hard Copy
+                    </a>
+                </div>
+            </div>
+
+            <!-- Important Notice -->
+            <div class="notice-section">
+                <h3 class="notice-title">⚠️ Penting untuk Diingat</h3>
+                <p class="notice-text">
+                    <strong>Waktu Pelaporan:</strong> Laporan harus dibuat dalam waktu 2x24 jam setelah kejadian kecelakaan.<br>
+                    <strong>Tanggung Jawab:</strong> Setiap karyawan wajib melaporkan kecelakaan yang terjadi di tempat kerja.<br>
+                    <strong>Kerahasiaan:</strong> Informasi dalam laporan akan dijaga kerahasiaannya sesuai dengan ketentuan yang berlaku.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            const flowSteps = document.querySelectorAll('.flow-step');
+            flowSteps.forEach((step, index) => {
+                step.style.opacity = '0';
+                step.style.transform = 'translateY(30px)';
+                step.style.transition = `opacity 0.6s ease ${index * 0.2}s, transform 0.6s ease ${index * 0.2}s`;
+                observer.observe(step);
+            });
+
+            const sections = document.querySelectorAll('.introduction-section, .cta-section, .notice-section');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+
+            const links = document.querySelectorAll('.flow-step-link, .cta-btn');
+            links.forEach(link => {
+                link.addEventListener('click', function() {
+                    console.log('Link clicked:', this.href);
+                });
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    <div id="site-footer"></div>
+    <script>
+      document.addEventListener('DOMContentLoaded', async () => {
+        try {
+          const parser = new DOMParser();
+          const [hRes, fRes] = await Promise.all([
+            fetch('header.html'),
+            fetch('footer.html')
+          ]);
+          const hText = await hRes.text();
+          const fText = await fRes.text();
+          const hDoc = parser.parseFromString(hText, 'text/html');
+          const fDoc = parser.parseFromString(fText, 'text/html');
+          const headerEl = hDoc.querySelector('header');
+          const footerEl = fDoc.querySelector('footer');
+          const headerMount = document.getElementById('site-header');
+          const footerMount = document.getElementById('site-footer');
+          if (headerEl && headerMount) headerMount.innerHTML = headerEl.outerHTML;
+          if (footerEl && footerMount) footerMount.innerHTML = footerEl.outerHTML;
+
+          // Ensure Bootstrap Icons CSS is present
+          if (!document.querySelector('link[href*="bootstrap-icons"]')) {
+            const bi = document.createElement('link');
+            bi.rel = 'stylesheet';
+            bi.href = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css';
+            document.head.appendChild(bi);
+          }
+
+          // Ensure shared footer CSS is present
+          if (!document.querySelector('link[href$="assets/footer.css"]')) {
+            const ftr = document.createElement('link');
+            ftr.rel = 'stylesheet';
+            ftr.href = 'assets/footer.css';
+            document.head.appendChild(ftr);
+          }
+
+          // Highlight active menu item (robust by page + hash or ?s=)
+          const currentPage = location.pathname.split('/').pop() || 'formulir.html';
+          const params = new URLSearchParams(location.search);
+          const sectionFromQuery = params.get('s');
+          const currentHash = location.hash || (sectionFromQuery ? ('#' + sectionFromQuery) : '');
+          document.querySelectorAll('.navbar a[href]').forEach(a => {
+            try {
+              const aUrl = new URL(a.getAttribute('href'), location.origin);
+              const aPage = aUrl.pathname.split('/').pop();
+              const aHash = aUrl.hash;
+              if (aPage === currentPage) {
+                if (currentHash) {
+                  if (aHash && aHash === currentHash) a.classList.add('active');
+                } else if (!aHash) {
+                  a.classList.add('active');
+                }
+              }
+            } catch(_) {}
+          });
+        } catch (e) { console.error('Failed loading header/footer:', e); }
+      });
+    </script>
+</body>
+</html>

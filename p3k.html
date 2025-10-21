@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertolongan Pertama Kecelakaan Kerja (P3K)</title>
+    <link rel="stylesheet" href="assets/header.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/footer.css">
+    <style>
+        :root {
+            --safety-blue: #1E3A8A;
+            --light-blue: #BFDBFE;
+            --soft-red: #FCA5A5;
+            --dark-red: #F87171;
+            --safety-yellow: #FEF08A;
+            --light-gray: #F9FAFB;
+            --dark-gray: #1F2937;
+            --medium-gray: #6B7280;
+            --white: #FFFFFF;
+            --success-green: #10B981;
+            --warning-orange: #F59E0B;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .p3k-hero {
+            background: linear-gradient(135deg, var(--safety-blue), #3B82F6);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .p3k-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .p3k-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .p3k-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content-section {
+            padding: 3rem 0;
+            background: var(--light-gray);
+        }
+
+        .introduction-section {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .introduction-section h2 {
+            color: var(--safety-blue);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .introduction-section p {
+            color: var(--dark-gray);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .accordion-title {
+            color: var(--safety-blue);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .accordion {
+            margin-bottom: 1.5rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .accordion:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .accordion-header {
+            background: var(--accordion-color, var(--light-blue));
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .accordion-header:hover {
+            background: var(--accordion-hover-color, #93C5FD);
+        }
+
+        .accordion-header.active {
+            background: var(--accordion-active-color, #60A5FA);
+        }
+
+        .accordion-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header.active .accordion-icon {
+            animation: pulse 0.6s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .accordion-title-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            flex: 1;
+        }
+
+        .accordion-toggle {
+            font-size: 1.5rem;
+            color: var(--dark-gray);
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active .accordion-toggle {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            background: white;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-content.active {
+            max-height: 1000px;
+            padding: 2rem;
+        }
+
+        .accordion-steps {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .accordion-steps li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #E5E7EB;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .accordion-steps li:last-child {
+            border-bottom: none;
+        }
+
+        .step-number {
+            background: var(--safety-blue);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        .step-text {
+            color: var(--dark-gray);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .accordion-fainting {
+            --accordion-color: var(--light-blue);
+            --accordion-hover-color: #93C5FD;
+            --accordion-active-color: #60A5FA;
+        }
+
+        .accordion-burn {
+            --accordion-color: var(--soft-red);
+            --accordion-hover-color: #F87171;
+            --accordion-active-color: #EF4444;
+        }
+
+        .accordion-bleeding {
+            --accordion-color: var(--dark-red);
+            --accordion-hover-color: #DC2626;
+            --accordion-active-color: #B91C1C;
+        }
+
+        .accordion-chemical {
+            --accordion-color: var(--safety-yellow);
+            --accordion-hover-color: #FDE047;
+            --accordion-active-color: #FACC15;
+        }
+
+        .nested-accordion {
+            margin-top: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nested-accordion-header {
+            background: #F3F4F6;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .nested-accordion-header:hover {
+            background: #E5E7EB;
+        }
+
+        .nested-accordion-header.active {
+            background: #D1D5DB;
+        }
+
+        .nested-accordion-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nested-accordion-content {
+            background: white;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .nested-accordion-content.active {
+            max-height: 500px;
+            padding: 1.5rem;
+        }
+
+        .nested-steps {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nested-steps li {
+            padding: 0.6rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+
+        .nested-step-icon {
+            background: var(--safety-blue);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .nested-step-text {
+            color: var(--dark-gray);
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .emergency-notice {
+            background: linear-gradient(135deg, #FEE2E2, #FECACA);
+            border: 2px solid #EF4444;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .emergency-title {
+            color: #DC2626;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .emergency-text {
+            color: #991B1B;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .emergency-number {
+            background: #DC2626;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: inline-block;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .emergency-number:hover {
+            background: #B91C1C;
+            transform: translateY(-2px);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--safety-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #1E40AF;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .p3k-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .accordion-header {
+                padding: 1rem 1.5rem;
+            }
+            
+            .accordion-icon {
+                font-size: 2rem;
+            }
+            
+            .accordion-title-text {
+                font-size: 1.2rem;
+            }
+            
+            .accordion-content.active {
+                padding: 1.5rem;
+            }
+            
+            .back-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .accordion-header {
+                padding: 0.8rem 1rem;
+            }
+            
+            .accordion-icon {
+                font-size: 1.8rem;
+                margin-right: 0.8rem;
+            }
+            
+            .accordion-title-text {
+                font-size: 1.1rem;
+            }
+            
+            .accordion-content.active {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <!-- Hero Section -->
+    <section class="p3k-hero">
+        <div class="container mx-auto px-4">
+            <h1>🚑 Pertolongan Pertama Kecelakaan Kerja (P3K)</h1>
+            <p>Panduan langkah cepat penanganan keadaan darurat di laboratorium</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <div class="container mx-auto px-4">
+            <!-- Introduction Section -->
+            <div class="introduction-section">
+                <h2>📋 Panduan P3K Laboratorium</h2>
+                <p>Setiap kecelakaan kerja memerlukan penanganan cepat dan tepat untuk mencegah cedera lebih lanjut. Berikut adalah panduan umum yang harus diketahui oleh seluruh personel laboratorium.</p>
+            </div>
+
+            <!-- Accordion Container -->
+            <div class="accordion-container">
+                <h2 class="accordion-title">🩺 Kategori Pertolongan Pertama</h2>
+
+                <!-- Pingsan -->
+                <div class="accordion accordion-fainting">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div style="display: flex; align-items: center;">
+                            <span class="accordion-icon">🧍‍♂️</span>
+                            <span class="accordion-title-text">Pingsan</span>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <ul class="accordion-steps">
+                            <li>
+                                <span class="step-number">1</span>
+                                <span class="step-text">Baringkan korban dan tinggikan tungkainya</span>
+                            </li>
+                            <li>
+                                <span class="step-number">2</span>
+                                <span class="step-text">Longgarkan pakaian korban</span>
+                            </li>
+                            <li>
+                                <span class="step-number">3</span>
+                                <span class="step-text">Bila pulih, istirahatkan beberapa menit</span>
+                            </li>
+                            <li>
+                                <span class="step-number">4</span>
+                                <span class="step-text">Bila tidak pulih, segera hubungi tenaga medis</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Luka Bakar -->
+                <div class="accordion accordion-burn">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div style="display: flex; align-items: center;">
+                            <span class="accordion-icon">🔥</span>
+                            <span class="accordion-title-text">Luka Bakar</span>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <ul class="accordion-steps">
+                            <li>
+                                <span class="step-number">1</span>
+                                <span class="step-text">Bebaskan korban dari sumber panas</span>
+                            </li>
+                            <li>
+                                <span class="step-number">2</span>
+                                <span class="step-text">Jika pingsan, tangani pingsan terlebih dahulu</span>
+                            </li>
+                            <li>
+                                <span class="step-number">3</span>
+                                <span class="step-text">Lepas benda yang menempel sebelum area membengkak (seperti cincin atau ikat pinggang)</span>
+                            </li>
+                            <li>
+                                <span class="step-number">4</span>
+                                <span class="step-text">Siram luka bakar tingkat pertama dengan air dingin 10–15 menit</span>
+                            </li>
+                            <li>
+                                <span class="step-number">5</span>
+                                <span class="step-text">Jangan pecahkan lepuh, oleskan salep antibiotik bila kulit terkelupas</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Perdarahan -->
+                <div class="accordion accordion-bleeding">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div style="display: flex; align-items: center;">
+                            <span class="accordion-icon">🩸</span>
+                            <span class="accordion-title-text">Perdarahan</span>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <ul class="accordion-steps">
+                            <li>
+                                <span class="step-number">1</span>
+                                <span class="step-text">Tekan tempat perdarahan dengan kain kasa 5–15 menit</span>
+                            </li>
+                            <li>
+                                <span class="step-number">2</span>
+                                <span class="step-text">Cuci luka dari dalam ke luar dengan air bersih sebelum menutup</span>
+                            </li>
+                            <li>
+                                <span class="step-number">3</span>
+                                <span class="step-text">Angkat bagian yang berdarah lebih tinggi dari jantung</span>
+                            </li>
+                            <li>
+                                <span class="step-number">4</span>
+                                <span class="step-text">Tidurkan korban dengan kepala lebih rendah (kecuali luka di kepala)</span>
+                            </li>
+                            <li>
+                                <span class="step-number">5</span>
+                                <span class="step-text">Tenangkan korban dan segera bawa ke fasilitas kesehatan</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Pajanan Bahan Kimia -->
+                <div class="accordion accordion-chemical">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div style="display: flex; align-items: center;">
+                            <span class="accordion-icon">☣️</span>
+                            <span class="accordion-title-text">Pajanan Bahan Kimia</span>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <!-- Terhirup -->
+                        <div class="nested-accordion">
+                            <button class="nested-accordion-header" onclick="toggleNestedAccordion(this)">
+                                <span class="nested-accordion-title">
+                                    <span>🫁</span>
+                                    Jika Terhirup
+                                </span>
+                                <span class="accordion-toggle">▼</span>
+                            </button>
+                            <div class="nested-accordion-content">
+                                <ul class="nested-steps">
+                                    <li>
+                                        <span class="nested-step-icon">1</span>
+                                        <span class="nested-step-text">Bawa korban ke tempat dengan udara segar</span>
+                                    </li>
+                                    <li>
+                                        <span class="nested-step-icon">2</span>
+                                        <span class="nested-step-text">Jika tidak bernapas, lakukan pernapasan buatan</span>
+                                    </li>
+                                    <li>
+                                        <span class="nested-step-icon">3</span>
+                                        <span class="nested-step-text">Berikan oksigen jika tersedia</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Terkena Kulit -->
+                        <div class="nested-accordion">
+                            <button class="nested-accordion-header" onclick="toggleNestedAccordion(this)">
+                                <span class="nested-accordion-title">
+                                    <span>🤚</span>
+                                    Jika Terkena Kulit
+                                </span>
+                                <span class="accordion-toggle">▼</span>
+                            </button>
+                            <div class="nested-accordion-content">
+                                <ul class="nested-steps">
+                                    <li>
+                                        <span class="nested-step-icon">1</span>
+                                        <span class="nested-step-text">Lepas pakaian terkontaminasi</span>
+                                    </li>
+                                    <li>
+                                        <span class="nested-step-icon">2</span>
+                                        <span class="nested-step-text">Bilas air mengalir minimal 15 menit</span>
+                                    </li>
+                                    <li>
+                                        <span class="nested-step-icon">3</span>
+                                        <span class="nested-step-text">Jika bahan bereaksi dengan air (mis. kapur), lap kering tanpa air</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Terkena Mata -->
+                        <div class="nested-accordion">
+                            <button class="nested-accordion-header" onclick="toggleNestedAccordion(this)">
+                                <span class="nested-accordion-title">
+                                    <span>👁️</span>
+                                    Jika Terkena Mata
+                                </span>
+                                <span class="accordion-toggle">▼</span>
+                            </button>
+                            <div class="nested-accordion-content">
+                                <ul class="nested-steps">
+                                    <li>
+                                        <span class="nested-step-icon">1</span>
+                                        <span class="nested-step-text">Bilas di eyewash station minimal 15 menit (asam) atau 30 menit (basa)</span>
+                                    </li>
+                                    <li>
+                                        <span class="nested-step-icon">2</span>
+                                        <span class="nested-step-text">Buka kelopak mata dan gerakkan bola mata saat membilas</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Tertelan -->
+                        <div class="nested-accordion">
+                            <button class="nested-accordion-header" onclick="toggleNestedAccordion(this)">
+                                <span class="nested-accordion-title">
+                                    <span>👄</span>
+                                    Jika Tertelan
+                                </span>
+                                <span class="accordion-toggle">▼</span>
+                            </button>
+                            <div class="nested-accordion-content">
+                                <ul class="nested-steps">
+                                    <li>
+                                        <span class="nested-step-icon">1</span>
+                                        <span class="nested-step-text">Jangan paksa muntah</span>
+                                    </li>
+                                    <li>
+                                        <span class="nested-step-icon">2</span>
+                                        <span class="nested-step-text">Berikan susu dingin atau putih telur</span>
+                                    </li>
+                                    <li>
+                                        <span class="nested-step-icon">3</span>
+                                        <span class="nested-step-text">Segera hubungi tenaga medis</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emergency Notice -->
+            <div class="emergency-notice">
+                <h3 class="emergency-title">
+                    <span>🚨</span>
+                    Nomor Darurat
+                </h3>
+                <p class="emergency-text">
+                    Dalam keadaan darurat yang memerlukan pertolongan medis segera, hubungi:
+                </p>
+                <a href="tel:119" class="emergency-number">
+                    <i class="fas fa-phone"></i> 119 (Ambulans)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
+            
+            document.querySelectorAll('.accordion-header').forEach(h => {
+                h.classList.remove('active');
+                h.nextElementSibling.classList.remove('active');
+            });
+            
+            if (!isActive) {
+                header.classList.add('active');
+                content.classList.add('active');
+            }
+        }
+
+        function toggleNestedAccordion(header) {
+            const content = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
+            
+            if (isActive) {
+                header.classList.remove('active');
+                content.classList.remove('active');
+            } else {
+                header.classList.add('active');
+                content.classList.add('active');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            const accordions = document.querySelectorAll('.accordion');
+            accordions.forEach((accordion, index) => {
+                accordion.style.opacity = '0';
+                accordion.style.transform = 'translateY(30px)';
+                accordion.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(accordion);
+            });
+
+            const emergencyNotice = document.querySelector('.emergency-notice');
+            emergencyNotice.style.opacity = '0';
+            emergencyNotice.style.transform = 'translateY(30px)';
+            emergencyNotice.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(emergencyNotice);
+        });
+    </script>
+    <div id="site-footer"></div>
+    <script>
+      document.addEventListener('DOMContentLoaded', async () => {
+        try {
+          const parser = new DOMParser();
+          const [hRes, fRes] = await Promise.all([
+            fetch('header.html'),
+            fetch('footer.html')
+          ]);
+          const hText = await hRes.text();
+          const fText = await fRes.text();
+          const hDoc = parser.parseFromString(hText, 'text/html');
+          const fDoc = parser.parseFromString(fText, 'text/html');
+          const headerEl = hDoc.querySelector('header');
+          const footerEl = fDoc.querySelector('footer');
+          const headerMount = document.getElementById('site-header');
+          const footerMount = document.getElementById('site-footer');
+          if (headerEl && headerMount) headerMount.innerHTML = headerEl.outerHTML;
+          if (footerEl && footerMount) footerMount.innerHTML = footerEl.outerHTML;
+
+          // Ensure Bootstrap Icons CSS is present
+          if (!document.querySelector('link[href*="bootstrap-icons"]')) {
+            const bi = document.createElement('link');
+            bi.rel = 'stylesheet';
+            bi.href = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css';
+            document.head.appendChild(bi);
+          }
+
+          // Ensure shared footer CSS is present
+          if (!document.querySelector('link[href$="assets/footer.css"]')) {
+            const ftr = document.createElement('link');
+            ftr.rel = 'stylesheet';
+            ftr.href = 'assets/footer.css';
+            document.head.appendChild(ftr);
+          }
+
+          // Highlight active menu item (robust by page + hash or ?s=)
+          const currentPage = location.pathname.split('/').pop() || 'p3k.html';
+          const params = new URLSearchParams(location.search);
+          const sectionFromQuery = params.get('s');
+          const currentHash = location.hash || (sectionFromQuery ? ('#' + sectionFromQuery) : '');
+          document.querySelectorAll('.navbar a[href]').forEach(a => {
+            try {
+              const aUrl = new URL(a.getAttribute('href'), location.origin);
+              const aPage = aUrl.pathname.split('/').pop();
+              const aHash = aUrl.hash;
+              if (aPage === currentPage) {
+                if (currentHash) {
+                  if (aHash && aHash === currentHash) a.classList.add('active');
+                } else if (!aHash) {
+                  a.classList.add('active');
+                }
+              }
+            } catch(_) {}
+          });
+        } catch (e) { console.error('Failed loading header/footer:', e); }
+      });
+    </script>
+</body>
+</html>

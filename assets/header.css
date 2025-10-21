@@ -1,0 +1,105 @@
+/* PANDAKTA Header Styles (shared across pages) */
+
+/* Header Container */
+.navbar {
+  display: flex;
+  align-items: center; /* keep vertical align */
+  justify-content: space-between; /* logo left, menu right */
+  gap: 16px;
+  background-color: #fff;
+  padding: 12px 40px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Logo / Title */
+.navbar .logo {
+  font-weight: 700;
+  font-size: 20px;
+  color: #007bff; /* logo color */
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+/* Nav Items */
+.navbar ul {
+  display: flex;
+  list-style: none;
+  margin: 0 0 0 auto; /* push nav to the right */
+  padding: 0;
+  gap: 16px; /* tighter spacing between menu items */
+}
+
+.navbar ul li { display: flex; align-items: center; }
+
+.navbar ul li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: #212529;
+  text-decoration: none;
+  padding: 6px 10px; /* slightly tighter padding to bring items closer */
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.navbar ul li a:hover,
+.navbar ul li a.active {
+  color: #007bff;
+  border-bottom-color: #007bff;
+}
+
+.navbar i {
+  font-size: 18px;
+}
+
+/* Hamburger (hidden on desktop) */
+.navbar .menu-toggle { display: none; }
+.navbar .hamburger {
+  display: none;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+.navbar .hamburger .bar {
+  display: block;
+  width: 26px;
+  height: 3px;
+  margin: 5px 0;
+  background: #212529;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar { padding: 12px 16px; gap: 12px; }
+  .navbar .logo { font-size: 18px; }
+
+  /* Show hamburger, hide menu by default */
+  .navbar .hamburger { display: inline-block; }
+  .navbar ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    background: #fff;
+    padding: 10px 16px 16px;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    z-index: 999;
+  }
+
+  /* Checkbox hack: when checked, show menu */
+  .navbar .menu-toggle:checked + label.hamburger + ul { display: flex; }
+
+  /* Transform hamburger to X when open */
+  .navbar .menu-toggle:checked + label.hamburger .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .navbar .menu-toggle:checked + label.hamburger .bar:nth-child(2) { opacity: 0; }
+  .navbar .menu-toggle:checked + label.hamburger .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+}

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ketentuan Pembuangan Limbah Kimia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --safety-blue: #1E3A8A;
+            --light-blue: #BFDBFE;
+            --safety-yellow: #FEF08A;
+            --organic-green: #86EFAC;
+            --inorganic-gray: #E5E7EB;
+            --b3-red: #FCA5A5;
+            --storage-orange: #FED7AA;
+            --disposal-green: #4ADE80;
+            --light-gray: #F9FAFB;
+            --dark-gray: #1F2937;
+            --medium-gray: #6B7280;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background: var(--light-gray);
+            color: var(--dark-gray);
+        }
+
+        .waste-hero {
+            background: linear-gradient(135deg, var(--safety-blue), #3B82F6);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .waste-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .waste-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .waste-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content-section {
+            padding: 3rem 0;
+            background: var(--light-gray);
+        }
+
+        .introduction-section {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .introduction-section h2 {
+            color: var(--safety-blue);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .introduction-section p {
+            color: var(--dark-gray);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .flow-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .flow-title {
+            color: var(--safety-blue);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .flow-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .flow-step:hover {
+            transform: translateY(-5px);
+        }
+
+        .flow-step-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flow-step-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .flow-step-description {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            max-width: 180px;
+        }
+
+        .step-waste-types { background: var(--light-blue); }
+        .step-separation { background: var(--safety-yellow); }
+        .step-storage { background: var(--storage-orange); }
+        .step-disposal { background: var(--disposal-green); }
+
+        .flow-arrow {
+            font-size: 2rem;
+            color: var(--safety-blue);
+            animation: flowMove 2s ease-in-out infinite;
+            margin: 0 1rem;
+        }
+
+        @keyframes flowMove {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+
+        .waste-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .waste-category {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: help;
+            transition: all 0.3s ease;
+        }
+
+        .category-organic { background: var(--organic-green); color: #065F46; }
+        .category-inorganic { background: var(--inorganic-gray); color: #374151; }
+        .category-b3 { background: var(--b3-red); color: #991B1B; }
+
+        .info-section {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-top: 3rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--safety-blue);
+            transition: all 0.3s ease;
+        }
+
+        .cta-section {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .cta-btn {
+            background: var(--safety-blue);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            position: relative;
+        }
+
+        .warning-notice {
+            background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+            border: 2px solid #F59E0B;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .flow-diagram { flex-direction: column; }
+            .flow-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="site-header"></div>
+
+<section class="waste-hero">
+    <div class="container">
+        <h1>♻️ Ketentuan Pembuangan Limbah Kimia</h1>
+        <p>Prosedur aman dalam menangani dan membuang limbah laboratorium agar tidak mencemari lingkungan</p>
+    </div>
+</section>
+
+<section class="content-section">
+    <div class="introduction-section">
+        <h2>🌱 Prinsip Pembuangan Limbah Berkelanjutan</h2>
+        <p>Pembuangan limbah kimia yang tepat adalah kewajiban setiap laboratorium untuk menjaga kelestarian lingkungan dan keselamatan masyarakat.</p>
+    </div>
+
+    <div class="flow-container">
+        <h2 class="flow-title">🔄 Diagram Alur Pembuangan Limbah</h2>
+
+        <div class="flow-diagram">
+            <div class="flow-step">
+                <div class="flow-step-icon step-waste-types">🧪</div>
+                <h3 class="flow-step-title">Jenis-Jenis Limbah</h3>
+                <p class="flow-step-description">Limbah cair, padat, dan gas dari kegiatan eksperimen.</p>
+            </div>
+
+            <div class="flow-arrow">→</div>
+
+            <div class="flow-step">
+                <div class="flow-step-icon step-separation">⚗️</div>
+                <h3 class="flow-step-title">Pemisahan Limbah</h3>
+                <p class="flow-step-description">Klasifikasi berdasarkan sifat dan tingkat bahayanya.</p>
+
+                <div class="waste-categories">
+                    <div class="waste-category category-organic">Organik</div>
+                    <div class="waste-category category-inorganic">Anorganik</div>
+                    <div class="waste-category category-b3">B3</div>
+                </div>
+            </div>
+
+            <div class="flow-arrow">→</div>
+
+            <div class="flow-step">
+                <div class="flow-step-icon step-storage">🗑️</div>
+                <h3 class="flow-step-title">Penyimpanan Sementara</h3>
+                <p class="flow-step-description">Wadah tertutup dan berlabel di area khusus.</p>
+            </div>
+
+            <div class="flow-arrow">→</div>
+
+            <div class="flow-step">
+                <div class="flow-step-icon step-disposal">🌿</div>
+                <h3 class="flow-step-title">Pembuangan Akhir</h3>
+                <p class="flow-step-description">Dikelola oleh pihak berizin sesuai standar.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <h2 style="text-align:center;">📋 Panduan Detail Pembuangan</h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>🧪 Identifikasi Limbah</h3>
+                <ul>
+                    <li>Periksa label dan MSDS bahan kimia</li>
+                    <li>Identifikasi sifat fisik dan kimia</li>
+                    <li>Tentukan tingkat bahaya</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>⚗️ Pemisahan yang Tepat</h3>
+                <ul>
+                    <li>Pisahkan berdasarkan jenis kimia</li>
+                    <li>Hindari pencampuran berbahaya</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>🗑️ Penyimpanan Aman</h3>
+                <ul>
+                    <li>Area ventilasi baik</li>
+                    <li>Akses terbatas</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>🌿 Pengolahan Akhir</h3>
+                <ul>
+                    <li>Kerjasama dengan pengelola berizin</li>
+                    <li>Dokumentasi transfer limbah</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <h2>📚 Pelajari Lebih Lanjut</h2>
+        <a href="#" class="cta-btn"><i class="fas fa-book"></i> Pelajari Prosedur Lengkap</a>
+    </div>
+
+    <div class="warning-notice">
+        <h3>⚠️ Peringatan Penting</h3>
+        <p><strong>Dilarang keras</strong> membuang limbah kimia langsung ke saluran pembuangan atau lingkungan.</p>
+    </div>
+</section>
+
+<script>
+    document.querySelector('.cta-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('Fitur ini akan segera tersedia!');
+    });
+</script>
+
+<div id="site-footer"></div>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const parser = new DOMParser();
+      const [hRes, fRes] = await Promise.all([
+        fetch('header.html'),
+        fetch('footer.html')
+      ]);
+      const hText = await hRes.text();
+      const fText = await fRes.text();
+      const hDoc = parser.parseFromString(hText, 'text/html');
+      const fDoc = parser.parseFromString(fText, 'text/html');
+      const headerEl = hDoc.querySelector('header');
+      const footerEl = fDoc.querySelector('footer');
+      const headerMount = document.getElementById('site-header');
+      const footerMount = document.getElementById('site-footer');
+      if (headerEl && headerMount) headerMount.innerHTML = headerEl.outerHTML;
+      if (footerEl && footerMount) footerMount.innerHTML = footerEl.outerHTML;
+
+      // Ensure shared CSS is present
+      if (!document.querySelector('link[href$="assets/header.css"]')) {
+        const hdr = document.createElement('link');
+        hdr.rel = 'stylesheet';
+        hdr.href = 'assets/header.css';
+        document.head.appendChild(hdr);
+      }
+      if (!document.querySelector('link[href$="assets/footer.css"]')) {
+        const ftr = document.createElement('link');
+        ftr.rel = 'stylesheet';
+        ftr.href = 'assets/footer.css';
+        document.head.appendChild(ftr);
+      }
+      if (!document.querySelector('link[href*="bootstrap-icons"]')) {
+        const bi = document.createElement('link');
+        bi.rel = 'stylesheet';
+        bi.href = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css';
+        document.head.appendChild(bi);
+      }
+
+      // Highlight active menu item
+      const currentPage = location.pathname.split('/').pop() || 'pembuanganlibah.html';
+      const params = new URLSearchParams(location.search);
+      const sectionFromQuery = params.get('s');
+      const currentHash = location.hash || (sectionFromQuery ? ('#' + sectionFromQuery) : '');
+      document.querySelectorAll('.navbar a[href]').forEach(a => {
+        try {
+          const aUrl = new URL(a.getAttribute('href'), location.href);
+          const aPage = aUrl.pathname.split('/').pop();
+          const aHash = aUrl.hash;
+          if (aPage === currentPage) {
+            if (currentHash) {
+              if (aHash && aHash === currentHash) a.classList.add('active');
+            } else if (!aHash) {
+              a.classList.add('active');
+            }
+          }
+        } catch(_) {}
+      });
+    } catch (e) { console.error('Failed loading header/footer:', e); }
+  });
+</script>
+
+</body>
+</html>

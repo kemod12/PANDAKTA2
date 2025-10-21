@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material Safety Data Sheet (MSDS)</title>
+    <link rel="stylesheet" href="assets/header.css">
+    <link rel="stylesheet" href="assets/footer.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1E3A8A;
+            --safety-yellow: #FACC15;
+            --light-blue: #E0F2FE;
+            --dark-gray: #1F2937;
+            --medium-gray: #6B7280;
+            --light-gray: #F9FAFB;
+            --white: #FFFFFF;
+            --danger-red: #DC2626;
+            --warning-orange: #F59E0B;
+            --success-green: #10B981;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .msds-hero {
+            background: linear-gradient(135deg, var(--primary-blue), #3B82F6);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .msds-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .msds-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .msds-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content-section {
+            padding: 3rem 0;
+        }
+
+        .search-filter-section {
+            background: var(--light-gray);
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .search-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 1rem;
+            align-items: center; /* align vertically centered for consistency */
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            box-sizing: border-box;
+            height: 48px; /* uniform control height */
+            padding: 0 1rem 0 3rem; /* keep icon room */
+            border: 2px solid #E5E7EB;
+            border-radius: 10px;
+            font-size: 1rem;
+            line-height: 46px; /* height - border */
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.12);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--medium-gray);
+            font-size: 1.2rem;
+        }
+
+        .filter-select {
+            box-sizing: border-box;
+            height: 48px; /* match input */
+            padding: 0 1rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-position: right 10px center;
+            background-repeat: no-repeat;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.12);
+        }
+
+        .msds-grid {
+            display: grid;
+            /* Fixed track width for consistent card size, auto-fit rows */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 340px));
+            gap: 2rem;
+            margin-top: 2rem;
+            /* Center the whole grid block and keep equal left/right spacing */
+            justify-content: center;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .msds-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .msds-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            border-color: var(--primary-blue);
+        }
+
+        .msds-card-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--light-blue), #F0F9FF);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chemical-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin: 0;
+        }
+
+        .chemical-formula {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+            margin-top: 0.3rem;
+        }
+
+        .ghs-symbols {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .ghs-symbol {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .ghs-toxic { background: var(--danger-red); }
+        .ghs-flammable { background: var(--warning-orange); }
+        .ghs-corrosive { background: var(--primary-blue); }
+        .ghs-explosive { background: #7C2D12; }
+        .ghs-irritant { background: var(--safety-yellow); color: var(--dark-gray); }
+
+        .msds-card-body {
+            padding: 1.5rem;
+        }
+
+        .hazard-level {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .hazard-low { background: #D1FAE5; color: #065F46; }
+        .hazard-medium { background: #FEF3C7; color: #92400E; }
+        .hazard-high { background: #FEE2E2; color: #991B1B; }
+
+        .msds-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+        }
+
+        .info-item i {
+            margin-right: 0.5rem;
+            color: var(--primary-blue);
+        }
+
+        .view-detail-btn {
+            width: 100%;
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .view-detail-btn:hover {
+            background: #1E40AF;
+            transform: translateY(-2px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary-blue), #3B82F6);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .modal-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+
+        .close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .close:hover {
+            opacity: 1;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+
+        .modal-section h3 {
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal-section p, .modal-section ul {
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        .modal-section ul {
+            padding-left: 1.5rem;
+        }
+
+        .modal-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .download-btn {
+            background: var(--safety-yellow);
+            color: var(--dark-gray);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .download-btn:hover {
+            background: #F59E0B;
+            transform: translateY(-2px);
+        }
+
+        .cta-section {
+            background: var(--light-gray);
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cta-btn-primary {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .cta-btn-secondary {
+            background: var(--safety-yellow);
+            color: var(--dark-gray);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .search-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .msds-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .msds-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="site-header"></div>
+    
+    <!-- Hero Section -->
+    <section class="msds-hero">
+        <div class="container mx-auto px-4">
+            <h1>🧴 Material Safety Data Sheet (MSDS)</h1>
+            <p>Informasi keselamatan bahan kimia untuk mendukung praktik kerja laboratorium yang aman</p>
+        </div>
+    </section>
+    
+    <!-- Search and Filter Section -->
+    <section class="search-filter-section">
+        <div class="container mx-auto px-4">
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Cari bahan kimia..." id="searchInput">
+                </div>
+                <select class="filter-select" id="typeFilter">
+                    <option value="">Semua Jenis</option>
+                    <option value="padat">Padat</option>
+                    <option value="cair">Cair</option>
+                    <option value="gas">Gas</option>
+                </select>
+                <select class="filter-select" id="hazardFilter">
+                    <option value="">Semua Tingkat</option>
+                    <option value="rendah">Rendah</option>
+                    <option value="sedang">Sedang</option>
+                    <option value="tinggi">Tinggi</option>
+                </select>
+                <select class="filter-select" id="categoryFilter">
+                    <option value="kimia">Kimia</option>
+                </select>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <section class="content-section">
+        <div class="container mx-auto px-4">
+            <div class="msds-grid" id="msdsGrid">
+                <!-- MSDS Card 1 -->
+                <div class="msds-card" data-type="cair" data-hazard="tinggi" data-category="kimia">
+                    <div class="msds-card-header">
+                        <div>
+                            <h3 class="chemical-name">Asam Sulfat</h3>
+                            <p class="chemical-formula">H₂SO₄</p>
+                        </div>
+                        <div class="ghs-symbols">
+                            <div class="ghs-symbol ghs-corrosive" title="Korosif">⚗️</div>
+                            <div class="ghs-symbol ghs-toxic" title="Beracun">☠️</div>
+                        </div>
+                    </div>
+                    <div class="msds-card-body">
+                        <span class="hazard-level hazard-high">Tinggi</span>
+                        <div class="msds-info">
+                            <div class="info-item">
+                                <i class="fas fa-flask"></i>
+                                <span>Cair</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-tag"></i>
+                                <span>CAS: 7664-93-9</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-layer-group"></i>
+                                <span>Kimia</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-weight"></i>
+                                <span>98%</span>
+                            </div>
+                        </div>
+                        <button class="view-detail-btn" onclick="openModal('asam-sulfat')">
+                            <i class="fas fa-eye"></i>
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+    
+                <!-- MSDS Card 2 -->
+                <div class="msds-card" data-type="cair" data-hazard="sedang" data-category="kimia">
+                    <div class="msds-card-header">
+                        <div>
+                            <h3 class="chemical-name">Etanol</h3>
+                            <p class="chemical-formula">C₂H₅OH</p>
+                        </div>
+                        <div class="ghs-symbols">
+                            <div class="ghs-symbol ghs-flammable" title="Mudah Menyala">🔥</div>
+                            <div class="ghs-symbol ghs-irritant" title="Iritasi">⚠️</div>
+                        </div>
+                    </div>
+                    <div class="msds-card-body">
+                        <span class="hazard-level hazard-medium">Sedang</span>
+                        <div class="msds-info">
+                            <div class="info-item">
+                                <i class="fas fa-flask"></i>
+                                <span>Cair</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-tag"></i>
+                                <span>CAS: 64-17-5</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-layer-group"></i>
+                                <span>Kimia</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-weight"></i>
+                                <span>95%</span>
+                            </div>
+                        </div>
+                        <button class="view-detail-btn" onclick="openModal('etanol')">
+                            <i class="fas fa-eye"></i>
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+    
+                <!-- MSDS Card 3 -->
+                <div class="msds-card" data-type="padat" data-hazard="rendah" data-category="kimia">
+                    <div class="msds-card-header">
+                        <div>
+                            <h3 class="chemical-name">Natrium Klorida</h3>
+                            <p class="chemical-formula">NaCl</p>
+                        </div>
+                        <div class="ghs-symbols">
+                            <div class="ghs-symbol ghs-irritant" title="Iritasi Ringan">⚠️</div>
+                        </div>
+                    </div>
+                    <div class="msds-card-body">
+                        <span class="hazard-level hazard-low">Rendah</span>
+                        <div class="msds-info">
+                            <div class="info-item">
+                                <i class="fas fa-cube"></i>
+                                <span>Padat</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-tag"></i>
+                                <span>CAS: 7647-14-5</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-layer-group"></i>
+                                <span>Kimia</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-weight"></i>
+                                <span>99%</span>
+                            </div>
+                        </div>
+                        <button class="view-detail-btn" onclick="openModal('natrium-klorida')">
+                            <i class="fas fa-eye"></i>
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+    
+                <!-- MSDS Card 4 -->
+                <div class="msds-card" data-type="gas" data-hazard="tinggi" data-category="kimia">
+                    <div class="msds-card-header">
+                        <div>
+                            <h3 class="chemical-name">Klorin</h3>
+                            <p class="chemical-formula">Cl₂</p>
+                        </div>
+                        <div class="ghs-symbols">
+                            <div class="ghs-symbol ghs-toxic" title="Beracun">☠️</div>
+                            <div class="ghs-symbol ghs-corrosive" title="Korosif">⚗️</div>
+                        </div>
+                    </div>
+                    <div class="msds-card-body">
+                        <span class="hazard-level hazard-high">Tinggi</span>
+                        <div class="msds-info">
+                            <div class="info-item">
+                                <i class="fas fa-wind"></i>
+                                <span>Gas</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-tag"></i>
+                                <span>CAS: 7782-50-5</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-layer-group"></i>
+                                <span>Kimia</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-weight"></i>
+                                <span>99.5%</span>
+                            </div>
+                        </div>
+                        <button class="view-detail-btn" onclick="openModal('klorin')">
+                            <i class="fas fa-eye"></i>
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+            </div>
+    
+            
+        </div>
+    </section>
+    
+    <!-- Modal -->
+    <div id="msdsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2 class="modal-title" id="modalTitle">Asam Sulfat</h2>
+                <p class="modal-subtitle" id="modalSubtitle">H₂SO₄ - CAS: 7664-93-9</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3><i class="fas fa-info-circle"></i> Identitas Bahan</h3>
+                    <p><strong>Nama:</strong> Asam Sulfat</p>
+                    <p><strong>Formula:</strong> H₂SO₄</p>
+                    <p><strong>Nomor CAS:</strong> 7664-93-9</p>
+                    <p><strong>Konsentrasi:</strong> 98%</p>
+                </div>
+    
+                <div class="modal-section">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Bahaya Fisik & Kesehatan</h3>
+                    <ul>
+                        <li>Sangat korosif terhadap kulit dan mata</li>
+                        <li>Berbahaya jika tertelan atau terhirup</li>
+                        <li>Dapat menyebabkan luka bakar parah</li>
+                        <li>Reaktif dengan air dan logam</li>
+                    </ul>
+                </div>
+    
+                <div class="modal-section">
+                    <h3><i class="fas fa-shield-alt"></i> Langkah Penanganan Aman</h3>
+                    <ul>
+                        <li>Simpan di tempat kering dan sejuk</li>
+                        <li>Gunakan jas lab, sarung tangan, dan kacamata pelindung</li>
+                        <li>Kerja di fume hood dengan ventilasi yang baik</li>
+                        <li>Jangan mencampur dengan air secara langsung</li>
+                    </ul>
+                </div>
+    
+                <div class="modal-section">
+                    <h3><i class="fas fa-ambulance"></i> Tindakan Darurat</h3>
+                    <ul>
+                        <li><strong>Kontak kulit:</strong> Bilas dengan air mengalir selama 15 menit</li>
+                        <li><strong>Kontak mata:</strong> Bilas dengan air mengalir selama 15 menit, segera ke dokter</li>
+                        <li><strong>Tertelan:</strong> Jangan dimuntahkan, minum air, segera ke dokter</li>
+                        <li><strong>Tumpahan:</strong> Netralkan dengan soda ash, ventilasi area</li>
+                    </ul>
+                </div>
+    
+                <div class="modal-section">
+                    <h3><i class="fas fa-recycle"></i> Pembuangan Limbah</h3>
+                    <p>Netralkan dengan basa lemah sebelum dibuang. Ikuti prosedur pembuangan limbah B3 yang berlaku.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const typeFilter = document.getElementById('typeFilter');
+            const hazardFilter = document.getElementById('hazardFilter');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const msdsGrid = document.getElementById('msdsGrid');
+    
+            function filterCards() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedType = typeFilter.value;
+                const selectedHazard = hazardFilter.value;
+                const selectedCategory = categoryFilter.value;
+    
+                const cards = msdsGrid.querySelectorAll('.msds-card');
+                
+                cards.forEach(card => {
+                    const name = card.querySelector('.chemical-name').textContent.toLowerCase();
+                    const formula = card.querySelector('.chemical-formula').textContent.toLowerCase();
+                    const type = card.dataset.type;
+                    const hazard = card.dataset.hazard;
+                    const category = card.dataset.category;
+    
+                    const matchesSearch = name.includes(searchTerm) || formula.includes(searchTerm);
+                    const matchesType = !selectedType || type === selectedType;
+                    const matchesHazard = !selectedHazard || hazard === selectedHazard;
+                    const matchesCategory = !selectedCategory || category === selectedCategory;
+    
+                    if (matchesSearch && matchesType && matchesHazard && matchesCategory) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+    
+            searchInput.addEventListener('input', filterCards);
+            typeFilter.addEventListener('change', filterCards);
+            hazardFilter.addEventListener('change', filterCards);
+            categoryFilter.addEventListener('change', filterCards);
+        });
+    
+        function openModal(chemicalId) {
+            const modal = document.getElementById('msdsModal');
+            modal.style.display = 'block';
+            
+            const chemicalData = {
+                'asam-sulfat': {
+                    title: 'Asam Sulfat',
+                    subtitle: 'H₂SO₄ - CAS: 7664-93-9'
+                },
+                'etanol': {
+                    title: 'Etanol',
+                    subtitle: 'C₂H₅OH - CAS: 64-17-5'
+                },
+                'natrium-klorida': {
+                    title: 'Natrium Klorida',
+                    subtitle: 'NaCl - CAS: 7647-14-5'
+                },
+                'klorin': {
+                    title: 'Klorin',
+                    subtitle: 'Cl₂ - CAS: 7782-50-5'
+                }
+            };
+    
+            const data = chemicalData[chemicalId];
+            if (data) {
+                document.getElementById('modalTitle').textContent = data.title;
+                document.getElementById('modalSubtitle').textContent = data.subtitle;
+            }
+        }
+    
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('msdsModal');
+            const closeBtn = document.querySelector('.close');
+            
+            if (event.target === modal || event.target === closeBtn) {
+                modal.style.display = 'none';
+            }
+        });
+    
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.getElementById('msdsModal').style.display = 'none';
+            }
+        });
+    </script>
+    <div id="site-footer"></div>
+    <script>
+      document.addEventListener('DOMContentLoaded', async () => {
+        try {
+          const parser = new DOMParser();
+          const [hRes, fRes] = await Promise.all([
+            fetch('header.html'),
+            fetch('footer.html')
+          ]);
+          const hText = await hRes.text();
+          const fText = await fRes.text();
+          const hDoc = parser.parseFromString(hText, 'text/html');
+          const fDoc = parser.parseFromString(fText, 'text/html');
+          const headerEl = hDoc.querySelector('header');
+          const footerEl = fDoc.querySelector('footer');
+          const headerMount = document.getElementById('site-header');
+          const footerMount = document.getElementById('site-footer');
+          if (headerEl && headerMount) headerMount.innerHTML = headerEl.outerHTML;
+          if (footerEl && footerMount) footerMount.innerHTML = footerEl.outerHTML;
+
+          // Ensure Bootstrap Icons CSS is present
+          if (!document.querySelector('link[href*="bootstrap-icons"]')) {
+            const bi = document.createElement('link');
+            bi.rel = 'stylesheet';
+            bi.href = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css';
+            document.head.appendChild(bi);
+          }
+
+          // Ensure shared footer CSS is present
+          if (!document.querySelector('link[href$="assets/footer.css"]')) {
+            const ftr = document.createElement('link');
+            ftr.rel = 'stylesheet';
+            ftr.href = 'assets/footer.css';
+            document.head.appendChild(ftr);
+          }
+
+          // Highlight active menu item (robust by page + hash or ?s=)
+          const currentPage = location.pathname.split('/').pop() || 'msds.html';
+          const params = new URLSearchParams(location.search);
+          const sectionFromQuery = params.get('s');
+          const currentHash = location.hash || (sectionFromQuery ? ('#' + sectionFromQuery) : '');
+          document.querySelectorAll('.navbar a[href]').forEach(a => {
+            try {
+              const aUrl = new URL(a.getAttribute('href'), location.origin);
+              const aPage = aUrl.pathname.split('/').pop();
+              const aHash = aUrl.hash;
+              if (aPage === currentPage) {
+                if (currentHash) {
+                  if (aHash && aHash === currentHash) a.classList.add('active');
+                } else if (!aHash) {
+                  a.classList.add('active');
+                }
+              }
+            } catch(_) {}
+          });
+        } catch (e) { console.error('Failed loading header/footer:', e); }
+      });
+    </script>
+</body>
+</html>
