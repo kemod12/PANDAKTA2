@@ -4,37 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pertolongan Pertama Kecelakaan Kerja (P3K)</title>
-    <link rel="stylesheet" href="assets/header.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/header.css">
     <link rel="stylesheet" href="assets/footer.css">
     <style>
         :root {
-            --safety-blue: #1E3A8A;
-            --light-blue: #BFDBFE;
+            /* Primary Colors */
+            --primary: #2563EB;
+            --primary-dark: #1D4ED8;
+            --primary-light: #3B82F6;
+            --primary-50: #EFF6FF;
+            
+            /* Semantic Colors */
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --info: #3B82F6;
+            --safety-blue: #2563EB;
+            --light-blue: #60A5FA;
             --soft-red: #FCA5A5;
-            --dark-red: #F87171;
-            --safety-yellow: #FEF08A;
-            --light-gray: #F9FAFB;
-            --dark-gray: #1F2937;
-            --medium-gray: #6B7280;
-            --white: #FFFFFF;
-            --success-green: #10B981;
-            --warning-orange: #F59E0B;
+            --dark-red: #DC2626;
+            --safety-yellow: #FBBF24;
+            --dark-gray: #374151;
+            --accent-1-50: #F5F3FF;
+            
+            /* Grayscale */
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            
+            /* Accent Colors */
+            --accent-1: #8B5CF6;
+            --accent-2: #EC4899;
+            --accent-3: #F59E0B;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            /* Border Radius */
+            --radius-sm: 0.25rem;
+            --radius: 0.5rem;
+            --radius-md: 0.75rem;
+            --radius-lg: 1rem;
+            --radius-full: 9999px;
+            
+            /* Transitions */
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             margin: 0;
             padding: 0;
+            color: var(--gray-800);
+            line-height: 1.6;
+            background-color: var(--gray-50);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--gray-900);
+            margin-top: 0;
+        }
+        
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 1.25rem; }
+        h4 { font-size: 1.25rem; margin-bottom: 1rem; }
+        
+        p {
+            margin-top: 0;
+            margin-bottom: 1rem;
         }
 
+        /* Hero Section */
         .p3k-hero {
-            background: linear-gradient(135deg, var(--safety-blue), #3B82F6);
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
             color: white;
-            padding: 4rem 0;
+            padding: 6rem 2rem 5rem;
             text-align: center;
             position: relative;
             overflow: hidden;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-md);
         }
 
         .p3k-hero::before {
@@ -67,19 +134,20 @@
 
         .content-section {
             padding: 3rem 0;
-            background: var(--light-gray);
+            background: var(--gray-50);
         }
 
         .introduction-section {
             background: white;
-            padding: 3rem 2rem;
-            border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            margin-bottom: 3rem;
+            padding: 3rem 2.5rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            margin: -3rem auto 4rem;
             max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
+            position: relative;
+            z-index: 10;
             text-align: center;
+            border: 1px solid var(--gray-100);
         }
 
         .introduction-section h2 {
@@ -99,23 +167,76 @@
         .accordion-container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 1.5rem 4rem;
         }
 
         .accordion-title {
-            color: var(--safety-blue);
-            font-size: 2rem;
+            color: var(--primary-dark);
+            font-size: 2.5rem;
             text-align: center;
-            margin-bottom: 3rem;
-            font-weight: 700;
+            margin: 3.5rem 0 3rem;
+            font-weight: 800;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent-1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 0 2rem 1.5rem;
+            width: 100%;
+        }
+        
+        .accordion-title::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent-1));
+            border-radius: 2px;
+        }
+        
+        .accordion-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent-1));
+            border-radius: 2px;
         }
 
         .accordion {
             margin-bottom: 1.5rem;
-            border-radius: 15px;
+            border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            border: 1px solid var(--gray-100);
+            position: relative;
+        }
+        
+        .accordion::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent-1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .accordion:hover::before {
+            opacity: 1;
         }
 
         .accordion:hover {
@@ -124,33 +245,68 @@
         }
 
         .accordion-header {
-            background: var(--accordion-color, var(--light-blue));
+            background: linear-gradient(90deg, rgba(239, 246, 255, 0.8) 0%, rgba(219, 234, 254, 0.8) 100%);
             padding: 1.5rem 2rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: none;
             width: 100%;
             text-align: left;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .accordion-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+            transition: transform 0.3s ease;
+            transform: scaleY(0);
+            transform-origin: top;
+        }
+        
+        .accordion-header.active::after {
+            transform: scaleY(1);
         }
 
         .accordion-header:hover {
-            background: var(--accordion-hover-color, #93C5FD);
+            background: linear-gradient(90deg, rgba(219, 234, 254, 0.9) 0%, rgba(191, 219, 254, 0.9) 100%);
+            transform: translateY(-1px);
         }
 
         .accordion-header.active {
-            background: var(--accordion-active-color, #60A5FA);
+            background: linear-gradient(90deg, rgba(219, 234, 254, 1) 0%, rgba(191, 219, 254, 1) 100%);
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
         }
 
         .accordion-icon {
-            font-size: 2.5rem;
-            margin-right: 1rem;
-            transition: all 0.3s ease;
+            font-size: 2.2rem;
+            margin-right: 1.25rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
         }
-
+        
         .accordion-header.active .accordion-icon {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             animation: pulse 0.6s ease-in-out;
         }
 
@@ -161,16 +317,33 @@
         }
 
         .accordion-title-text {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            color: var(--dark-gray);
+            color: var(--gray-800);
             flex: 1;
+            line-height: 1.4;
+            letter-spacing: -0.01em;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
         }
 
         .accordion-toggle {
-            font-size: 1.5rem;
-            color: var(--dark-gray);
-            transition: transform 0.3s ease;
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.7);
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+        
+        .accordion-header:hover .accordion-toggle {
+            background: white;
+            color: var(--primary);
         }
 
         .accordion-header.active .accordion-toggle {
@@ -182,51 +355,136 @@
             padding: 0;
             max-height: 0;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--gray-700);
+            position: relative;
+        }
+        
+        .accordion-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gray-200), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .accordion-content.active::before {
+            opacity: 1;
         }
 
         .accordion-content.active {
-            max-height: 1000px;
-            padding: 2rem;
+            max-height: 5000px;
+            padding: 2.5rem 3rem;
+            background: linear-gradient(180deg, rgba(249, 250, 251, 0.5) 0%, rgba(255, 255, 255, 1) 5%);
+            border-top: 1px solid rgba(229, 231, 235, 0.5);
         }
 
+        /* Steps Styling */
         .accordion-steps {
             list-style: none;
             padding: 0;
             margin: 0;
+            counter-reset: step-counter;
+            position: relative;
         }
-
-        .accordion-steps li {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid #E5E7EB;
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
+        
+        .accordion-steps::before {
+            content: '';
+            position: absolute;
+            left: 1.25rem;
+            top: 0.5rem;
+            bottom: 0.5rem;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary-50), var(--accent-1-50), var(--primary-50));
+            opacity: 0.5;
         }
-
-        .accordion-steps li:last-child {
-            border-bottom: none;
+        
+        .accordion-steps > li {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 1.75rem;
+            counter-increment: step-counter;
+            transition: all 0.3s ease;
         }
-
-        .step-number {
-            background: var(--safety-blue);
+        
+        .accordion-steps > li:hover {
+            transform: translateX(4px);
+        }
+        
+        .accordion-steps > li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: linear-gradient(135deg, var(--primary), var(--accent-1));
             color: white;
-            width: 30px;
-            height: 30px;
+            width: 2rem;
+            height: 2rem;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 600;
-            font-size: 0.9rem;
-            flex-shrink: 0;
-            margin-top: 0.2rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+            z-index: 2;
+            border: 2px solid white;
         }
-
-        .step-text {
-            color: var(--dark-gray);
+        
+        .accordion-steps ul {
+            list-style: none;
+            padding-left: 2rem;
+            margin: 1rem 0 0.5rem;
+            position: relative;
+        }
+        
+        .accordion-steps ul::before {
+            content: '';
+            position: absolute;
+            left: 0.25rem;
+            top: 0.5rem;
+            bottom: 0.5rem;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--gray-200), var(--gray-300), var(--gray-200));
+        }
+        
+        .accordion-steps ul li {
+            position: relative;
+            padding-left: 1.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--gray-600);
             line-height: 1.6;
-            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+        
+        .accordion-steps ul li:hover {
+            color: var(--gray-800);
+            transform: translateX(2px);
+        }
+        
+        .accordion-steps ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.65em;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+            transform: translateY(-50%);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+            transition: all 0.2s ease;
+        }
+        
+        .accordion-steps ul li:hover::before {
+            transform: translateY(-50%) scale(1.2);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.3);
         }
 
         .accordion-fainting {
@@ -254,31 +512,31 @@
         }
 
         .nested-accordion {
-            margin-top: 1rem;
-            border-radius: 10px;
+            margin: 1rem 0;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: var(--gray-50);
+            box-shadow: var(--shadow-sm);
         }
 
         .nested-accordion-header {
-            background: #F3F4F6;
+            width: 100%;
             padding: 1rem 1.5rem;
+            background: var(--gray-100);
+            border: none;
+            text-align: left;
             cursor: pointer;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            transition: all 0.3s ease;
-            border: none;
-            width: 100%;
-            text-align: left;
+            align-items: center;
+            transition: all 0.2s;
+            font-weight: 600;
+            color: var(--primary-dark);
         }
-
+        
         .nested-accordion-header:hover {
-            background: #E5E7EB;
-        }
-
-        .nested-accordion-header.active {
-            background: #D1D5DB;
+            background: var(--gray-200);
         }
 
         .nested-accordion-title {
@@ -291,63 +549,70 @@
         }
 
         .nested-accordion-content {
-            background: white;
             padding: 0;
             max-height: 0;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: max-height 0.3s ease;
+            background: white;
         }
-
+        
         .nested-accordion-content.active {
-            max-height: 500px;
             padding: 1.5rem;
+            max-height: 1000px;
+        }
+        
+        .nested-accordion-header .nested-accordion-toggle {
+            transition: transform 0.3s ease;
+        }
+        
+        .nested-accordion-header.active .nested-accordion-toggle {
+            transform: rotate(45deg);
         }
 
         .nested-steps {
             list-style: none;
             padding: 0;
             margin: 0;
+            counter-reset: nested-step-counter;
         }
 
         .nested-steps li {
-            padding: 0.6rem 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.8rem;
+            position: relative;
+            padding-left: 2.5rem;
+            margin-bottom: 1rem;
+            counter-increment: nested-step-counter;
+            line-height: 1.6;
+            color: var(--gray-700);
         }
 
-        .nested-step-icon {
-            background: var(--safety-blue);
+        .nested-steps li::before {
+            content: counter(nested-step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--primary);
             color: white;
-            width: 24px;
-            height: 24px;
+            width: 1.5rem;
+            height: 1.5rem;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 0.875rem;
             font-weight: 600;
-            font-size: 0.8rem;
-            flex-shrink: 0;
-            margin-top: 0.1rem;
-        }
-
-        .nested-step-text {
-            color: var(--dark-gray);
-            line-height: 1.5;
-            font-size: 0.95rem;
         }
 
         .emergency-notice {
             background: linear-gradient(135deg, #FEE2E2, #FECACA);
-            border: 2px solid #EF4444;
-            border-radius: 15px;
+            border: 2px solid var(--danger);
+            border-radius: var(--radius-lg);
             padding: 2rem;
             margin-top: 3rem;
             text-align: center;
         }
 
         .emergency-title {
-            color: #DC2626;
+            color: var(--dark-red);
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
@@ -365,10 +630,10 @@
         }
 
         .emergency-number {
-            background: #DC2626;
+            background: var(--dark-red);
             color: white;
             padding: 1rem 2rem;
-            border-radius: 10px;
+            border-radius: var(--radius);
             font-size: 1.2rem;
             font-weight: 700;
             display: inline-block;
@@ -395,7 +660,7 @@
             justify-content: center;
             text-decoration: none;
             font-size: 1.2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: var(--shadow-md);
             transition: all 0.3s ease;
             opacity: 0;
             visibility: hidden;
@@ -408,37 +673,156 @@
         }
 
         .back-to-top:hover {
-            background: #1E40AF;
+            background: var(--primary-dark);
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Emergency Cards */
+        .emergency-cards {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+
+        .emergency-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .emergency-card.alt-bg {
+            background: var(--gray-50);
+        }
+
+        .emergency-card .card-left {
+            flex: 1 1 auto;
+        }
+
+        .card-left-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .service-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .service-icon--112 {
+            background: #E6F7FF;
+            color: #06B6D4;
+        }
+
+        .service-icon--fire {
+            background: #FFF1F2;
+            color: var(--danger);
+        }
+
+        .emergency-card .card-title {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--gray-900);
+            margin: 0;
+        }
+
+        .emergency-card .card-desc {
+            color: var(--gray-600);
+            font-size: 0.98rem;
+            line-height: 1.55;
+            margin: 0.35rem 0 0 0;
+        }
+
+        .emergency-card .card-right {
+            min-width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+            gap: 0.5rem;
+        }
+
+        .emergency-card .card-link {
+            color: var(--primary);
+            font-weight: 800;
+            text-decoration: none;
+            font-size: 1.05rem;
+        }
+
+        .emergency-card .card-link:hover {
+            text-decoration: underline;
+        }
+
+        .phone-icon {
+            display: inline-block;
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            font-size: 40px;
+            line-height: 1;
+            background: linear-gradient(135deg, #06B6D4 0%, var(--primary) 50%, var(--accent-1) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(139, 92, 246, 0.35);
+            transition: transform 0.2s ease;
+        }
+
+        .phone-icon::before {
+            content: "\f095";
+        }
+
+        .card-right:hover .phone-icon {
+            transform: scale(1.12);
+        }
+
+        @media (max-width: 1024px) {
+            .emergency-cards {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
             .p3k-hero h1 {
                 font-size: 2rem;
             }
-            
             .accordion-header {
                 padding: 1rem 1.5rem;
             }
-            
             .accordion-icon {
                 font-size: 2rem;
             }
-            
             .accordion-title-text {
                 font-size: 1.2rem;
             }
-            
             .accordion-content.active {
                 padding: 1.5rem;
             }
-            
             .back-to-top {
                 bottom: 1rem;
                 right: 1rem;
                 width: 45px;
                 height: 45px;
+            }
+            .emergency-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .emergency-card .card-right {
+                min-width: 0;
+                align-items: flex-start;
+                text-align: left;
             }
         }
 
@@ -446,16 +830,13 @@
             .accordion-header {
                 padding: 0.8rem 1rem;
             }
-            
             .accordion-icon {
                 font-size: 1.8rem;
                 margin-right: 0.8rem;
             }
-            
             .accordion-title-text {
                 font-size: 1.1rem;
             }
-            
             .accordion-content.active {
                 padding: 1rem;
             }
@@ -488,7 +869,7 @@
 
                 <!-- Pingsan -->
                 <div class="accordion accordion-fainting">
-                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <button class="accordion-header" onclick="toggleAccordion(this)" aria-expanded="false">
                         <div style="display: flex; align-items: center;">
                             <span class="accordion-icon">🧍‍♂️</span>
                             <span class="accordion-title-text">Pingsan</span>
@@ -497,29 +878,17 @@
                     </button>
                     <div class="accordion-content">
                         <ul class="accordion-steps">
-                            <li>
-                                <span class="step-number">1</span>
-                                <span class="step-text">Baringkan korban dan tinggikan tungkainya</span>
-                            </li>
-                            <li>
-                                <span class="step-number">2</span>
-                                <span class="step-text">Longgarkan pakaian korban</span>
-                            </li>
-                            <li>
-                                <span class="step-number">3</span>
-                                <span class="step-text">Bila pulih, istirahatkan beberapa menit</span>
-                            </li>
-                            <li>
-                                <span class="step-number">4</span>
-                                <span class="step-text">Bila tidak pulih, segera hubungi tenaga medis</span>
-                            </li>
+                            <li>Baringkan korban dan tinggikan tungkainya</li>
+                            <li>Longgarkan pakaian korban</li>
+                            <li>Bila pulih, istirahatkan beberapa menit</li>
+                            <li>Bila tidak pulih, segera dapatkan pertolongan medis</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Luka Bakar -->
                 <div class="accordion accordion-burn">
-                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <button class="accordion-header" onclick="toggleAccordion(this)" aria-expanded="false">
                         <div style="display: flex; align-items: center;">
                             <span class="accordion-icon">🔥</span>
                             <span class="accordion-title-text">Luka Bakar</span>
@@ -528,33 +897,18 @@
                     </button>
                     <div class="accordion-content">
                         <ul class="accordion-steps">
-                            <li>
-                                <span class="step-number">1</span>
-                                <span class="step-text">Bebaskan korban dari sumber panas</span>
-                            </li>
-                            <li>
-                                <span class="step-number">2</span>
-                                <span class="step-text">Jika pingsan, tangani pingsan terlebih dahulu</span>
-                            </li>
-                            <li>
-                                <span class="step-number">3</span>
-                                <span class="step-text">Lepas benda yang menempel sebelum area membengkak (seperti cincin atau ikat pinggang)</span>
-                            </li>
-                            <li>
-                                <span class="step-number">4</span>
-                                <span class="step-text">Siram luka bakar tingkat pertama dengan air dingin 10–15 menit</span>
-                            </li>
-                            <li>
-                                <span class="step-number">5</span>
-                                <span class="step-text">Jangan pecahkan lepuh, oleskan salep antibiotik bila kulit terkelupas</span>
-                            </li>
+                            <li>Bebaskan korban dari sumber panas</li>
+                            <li>Jika pingsan, tangani pingsan terlebih dahulu</li>
+                            <li>Lepas benda yang menempel sebelum area membengkak (seperti cincin atau ikat pinggang)</li>
+                            <li>Siram luka bakar tingkat pertama dengan air dingin 10–15 menit</li>
+                            <li>Jangan pecahkan lepuh, oleskan salep antibiotik bila kulit terkelupas</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Perdarahan -->
                 <div class="accordion accordion-bleeding">
-                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <button class="accordion-header" onclick="toggleAccordion(this)" aria-expanded="false">
                         <div style="display: flex; align-items: center;">
                             <span class="accordion-icon">🩸</span>
                             <span class="accordion-title-text">Perdarahan</span>
@@ -563,33 +917,18 @@
                     </button>
                     <div class="accordion-content">
                         <ul class="accordion-steps">
-                            <li>
-                                <span class="step-number">1</span>
-                                <span class="step-text">Tekan tempat perdarahan dengan kain kasa 5–15 menit</span>
-                            </li>
-                            <li>
-                                <span class="step-number">2</span>
-                                <span class="step-text">Cuci luka dari dalam ke luar dengan air bersih sebelum menutup</span>
-                            </li>
-                            <li>
-                                <span class="step-number">3</span>
-                                <span class="step-text">Angkat bagian yang berdarah lebih tinggi dari jantung</span>
-                            </li>
-                            <li>
-                                <span class="step-number">4</span>
-                                <span class="step-text">Tidurkan korban dengan kepala lebih rendah (kecuali luka di kepala)</span>
-                            </li>
-                            <li>
-                                <span class="step-number">5</span>
-                                <span class="step-text">Tenangkan korban dan segera bawa ke fasilitas kesehatan</span>
-                            </li>
+                            <li>Tekan tempat perdarahan dengan kain kasa 5–15 menit</li>
+                            <li>Cuci luka dari dalam ke luar dengan air bersih sebelum menutup</li>
+                            <li>Angkat bagian yang berdarah lebih tinggi dari jantung</li>
+                            <li>Tidurkan korban dengan kepala lebih rendah (kecuali luka di kepala)</li>
+                            <li>Tenangkan korban dan segera bawa ke fasilitas kesehatan</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Pajanan Bahan Kimia -->
                 <div class="accordion accordion-chemical">
-                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <button class="accordion-header" onclick="toggleAccordion(this)" aria-expanded="false">
                         <div style="display: flex; align-items: center;">
                             <span class="accordion-icon">☣️</span>
                             <span class="accordion-title-text">Pajanan Bahan Kimia</span>
@@ -599,129 +938,331 @@
                     <div class="accordion-content">
                         <!-- Terhirup -->
                         <div class="nested-accordion">
-                            <button class="nested-accordion-header" onclick="toggleNestedAccordion(this)">
+                            <button class="nested-accordion-header" onclick="toggleNestedAccordion(this)" aria-expanded="false">
                                 <span class="nested-accordion-title">
                                     <span>🫁</span>
                                     Jika Terhirup
                                 </span>
-                                <span class="accordion-toggle">▼</span>
+                                <span class="nested-accordion-toggle">+</span>
                             </button>
                             <div class="nested-accordion-content">
                                 <ul class="nested-steps">
-                                    <li>
-                                        <span class="nested-step-icon">1</span>
-                                        <span class="nested-step-text">Bawa korban ke tempat dengan udara segar</span>
-                                    </li>
-                                    <li>
-                                        <span class="nested-step-icon">2</span>
-                                        <span class="nested-step-text">Jika tidak bernapas, lakukan pernapasan buatan</span>
-                                    </li>
-                                    <li>
-                                        <span class="nested-step-icon">3</span>
-                                        <span class="nested-step-text">Berikan oksigen jika tersedia</span>
-                                    </li>
+                                    <li>Bawa korban ke tempat dengan udara segar</li>
+                                    <li>Jika tidak bernapas, lakukan pernapasan buatan</li>
+                                    <li>Berikan oksigen jika tersedia</li>
+                                    <li>Segera hubungi tenaga medis</li>
                                 </ul>
                             </div>
                         </div>
 
                         <!-- Terkena Kulit -->
                         <div class="nested-accordion">
-                            <button class="nested-accordion-header" onclick="toggleNestedAccordion(this)">
+                            <button class="nested-accordion-header" onclick="toggleNestedAccordion(this)" aria-expanded="false">
                                 <span class="nested-accordion-title">
                                     <span>🤚</span>
                                     Jika Terkena Kulit
                                 </span>
-                                <span class="accordion-toggle">▼</span>
+                                <span class="nested-accordion-toggle">+</span>
                             </button>
                             <div class="nested-accordion-content">
                                 <ul class="nested-steps">
-                                    <li>
-                                        <span class="nested-step-icon">1</span>
-                                        <span class="nested-step-text">Lepas pakaian terkontaminasi</span>
-                                    </li>
-                                    <li>
-                                        <span class="nested-step-icon">2</span>
-                                        <span class="nested-step-text">Bilas air mengalir minimal 15 menit</span>
-                                    </li>
-                                    <li>
-                                        <span class="nested-step-icon">3</span>
-                                        <span class="nested-step-text">Jika bahan bereaksi dengan air (mis. kapur), lap kering tanpa air</span>
-                                    </li>
+                                    <li>Lepas pakaian terkontaminasi</li>
+                                    <li>Bilas air mengalir minimal 15 menit</li>
+                                    <li>Jika bahan bereaksi dengan air (mis. kapur), lap kering tanpa air</li>
+                                    <li>Untuk basa, setelah dibilas air, bilas dengan larutan asam asetat 1% lalu bilas lagi dengan air</li>
+                                    <li>Olesi dengan salep bor</li>
                                 </ul>
                             </div>
                         </div>
 
                         <!-- Terkena Mata -->
                         <div class="nested-accordion">
-                            <button class="nested-accordion-header" onclick="toggleNestedAccordion(this)">
+                            <button class="nested-accordion-header" onclick="toggleNestedAccordion(this)" aria-expanded="false">
                                 <span class="nested-accordion-title">
                                     <span>👁️</span>
                                     Jika Terkena Mata
                                 </span>
-                                <span class="accordion-toggle">▼</span>
+                                <span class="nested-accordion-toggle">+</span>
                             </button>
                             <div class="nested-accordion-content">
                                 <ul class="nested-steps">
-                                    <li>
-                                        <span class="nested-step-icon">1</span>
-                                        <span class="nested-step-text">Bilas di eyewash station minimal 15 menit (asam) atau 30 menit (basa)</span>
-                                    </li>
-                                    <li>
-                                        <span class="nested-step-icon">2</span>
-                                        <span class="nested-step-text">Buka kelopak mata dan gerakkan bola mata saat membilas</span>
-                                    </li>
+                                    <li>Bilas di eyewash station minimal 15 menit (asam) atau 30 menit (basa)</li>
+                                    <li>Buka kelopak mata dan gerakkan bola mata saat membilas</li>
+                                    <li>Lepaskan lensa kontak jika digunakan</li>
+                                    <li>Segera cari pertolongan medis</li>
                                 </ul>
                             </div>
                         </div>
 
                         <!-- Tertelan -->
                         <div class="nested-accordion">
-                            <button class="nested-accordion-header" onclick="toggleNestedAccordion(this)">
+                            <button class="nested-accordion-header" onclick="toggleNestedAccordion(this)" aria-expanded="false">
                                 <span class="nested-accordion-title">
                                     <span>👄</span>
                                     Jika Tertelan
                                 </span>
-                                <span class="accordion-toggle">▼</span>
+                                <span class="nested-accordion-toggle">+</span>
                             </button>
                             <div class="nested-accordion-content">
                                 <ul class="nested-steps">
-                                    <li>
-                                        <span class="nested-step-icon">1</span>
-                                        <span class="nested-step-text">Jangan paksa muntah</span>
-                                    </li>
-                                    <li>
-                                        <span class="nested-step-icon">2</span>
-                                        <span class="nested-step-text">Berikan susu dingin atau putih telur</span>
-                                    </li>
-                                    <li>
-                                        <span class="nested-step-icon">3</span>
-                                        <span class="nested-step-text">Segera hubungi tenaga medis</span>
-                                    </li>
+                                    <li>Jangan paksa muntah</li>
+                                    <li>Berikan susu dingin atau putih telur</li>
+                                    <li>Segera hubungi tenaga medis</li>
+                                    <li>Bawa wadah/kemasan bahan kimia untuk identifikasi</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Emergency Notice -->
-            <div class="emergency-notice">
-                <h3 class="emergency-title">
-                    <span>🚨</span>
-                    Nomor Darurat
-                </h3>
-                <p class="emergency-text">
-                    Dalam keadaan darurat yang memerlukan pertolongan medis segera, hubungi:
-                </p>
-                <a href="tel:119" class="emergency-number">
-                    <i class="fas fa-phone"></i> 119 (Ambulans)
-                </a>
+                <!-- Gangguan Pernapasan -->
+                <div class="accordion accordion-breathing">
+                    <button class="accordion-header" onclick="toggleAccordion(this)" aria-expanded="false">
+                        <div style="display: flex; align-items: center;">
+                            <span class="accordion-icon">😮‍💨</span>
+                            <span class="accordion-title-text">Gangguan Pernapasan</span>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="nested-accordion">
+                            <button class="nested-accordion-header" onclick="toggleNestedAccordion(this)" aria-expanded="false">
+                                <span class="nested-accordion-title">
+                                    <span>🚫</span>
+                                    Sumbatan Jalan Napas
+                                </span>
+                                <span class="nested-accordion-toggle">+</span>
+                            </button>
+                            <div class="nested-accordion-content">
+                                <ul class="nested-steps">
+                                    <li>Keluarkan benda penyumbat jika terlihat</li>
+                                    <li>Jika korban sadar, tenangkan dan pantau kondisi</li>
+                                    <li>Bersiaplah untuk memberikan bantuan pernapasan jika diperlukan</li>
+                                    <li>Segera rujuk ke fasilitas kesehatan meskipun korban tampak pulih</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="nested-accordion">
+                            <button class="nested-accordion-header" onclick="toggleNestedAccordion(this)" aria-expanded="false">
+                                <span class="nested-accordion-title">
+                                    <span>🌬️</span>
+                                    Serangan Asma
+                                </span>
+                                <span class="nested-accordion-toggle">+</span>
+                            </button>
+                            <div class="nested-accordion-content">
+                                <ul class="nested-steps">
+                                    <li>Tenangkan korban dan berikan akses udara segar</li>
+                                    <li>Bantu korban menggunakan obat yang biasa digunakan</li>
+                                    <li>Posisikan duduk atau setengah duduk (jangan dibaringkan)</li>
+                                    <li>Jika tidak sadar, segera siapkan pertolongan darurat</li>
+                                    <li>Segera hubungi ambulans</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gangguan Kesadaran -->
+                <div class="accordion accordion-consciousness">
+                    <button class="accordion-header" onclick="toggleAccordion(this)" aria-expanded="false">
+                        <div style="display: flex; align-items: center;">
+                            <span class="accordion-icon">🤕</span>
+                            <span class="accordion-title-text">Gangguan Kesadaran</span>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="nested-accordion">
+                            <button class="nested-accordion-header" onclick="toggleNestedAccordion(this)" aria-expanded="false">
+                                <span class="nested-accordion-title">
+                                    <span>😵</span>
+                                    Tidak Sadar
+                                </span>
+                                <span class="nested-accordion-toggle">+</span>
+                            </button>
+                            <div class="nested-accordion-content">
+                                <ul class="nested-steps">
+                                    <li>Periksa respons korban</li>
+                                    <li>Panggil bantuan medis segera</li>
+                                    <li>Periksa pernapasan dan denyut nadi</li>
+                                    <li>Jika bernapas, posisikan dalam posisi pemulihan (recovery position)</li>
+                                    <li>Jika tidak bernapas, lakukan RJP (Resusitasi Jantung Paru)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="nested-accordion">
+                            <button class="nested-accordion-header" onclick="toggleNestedAccordion(this)" aria-expanded="false">
+                                <span class="nested-accordion-title">
+                                    <span>🧠</span>
+                                    Cedera Kepala
+                                </span>
+                                <span class="nested-accordion-toggle">+</span>
+                            </button>
+                            <div class="nested-accordion-content">
+                                <ul class="nested-steps">
+                                    <li>Jika tidak sadar, posisikan dalam posisi stabil</li>
+                                    <li>Jika sadar, baringkan dan istirahatkan penderita</li>
+                                    <li>Bersihkan dan pastikan jalan napas terbuka</li>
+                                    <li>Awasi pernapasan dan sirkulasi</li>
+                                    <li>Topang kepala dan leher dengan stabil</li>
+                                    <li>Jika ada darah dari telinga, tutup ringan dengan kasa steril</li>
+                                    <li>Segera rujuk ke fasilitas kesehatan</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shock -->
+                <div class="accordion accordion-shock">
+                    <button class="accordion-header" onclick="toggleAccordion(this)" aria-expanded="false">
+                        <div style="display: flex; align-items: center;">
+                            <span class="accordion-icon">💫</span>
+                            <span class="accordion-title-text">Shock</span>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <ul class="accordion-steps">
+                            <li>Bawa ke tempat yang teduh dan aman</li>
+                            <li>Baringkan terlentang dengan tungkai ditinggikan 20-30 cm</li>
+                            <li>Longgarkan pakaian yang ketat</li>
+                            <li>Selimuti korban untuk menghangatkan</li>
+                            <li>Tenangkan korban</li>
+                            <li>Pastikan jalan napas lancar</li>
+                            <li>Berikan oksigen jika tersedia</li>
+                            <li>Pantau tanda vital secara berkala</li>
+                            <li>Segera rujuk ke fasilitas kesehatan</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Patah Tulang -->
+                <div class="accordion accordion-fracture">
+                    <button class="accordion-header" onclick="toggleAccordion(this)" aria-expanded="false">
+                        <div style="display: flex; align-items: center;">
+                            <span class="accordion-icon">🦴</span>
+                            <span class="accordion-title-text">Patah Tulang</span>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <ul class="accordion-steps">
+                            <li>Pindahkan korban ke tempat aman dengan hati-hati</li>
+                            <li>Hentikan perdarahan jika ada</li>
+                            <li>Pastikan jalan napas terbuka, berikan napas buatan jika perlu</li>
+                            <li>Tutup luka dengan kasa steril</li>
+                            <li>Pasang bidai/penyangga dengan hati-hati</li>
+                            <li>Jangan mencoba meluruskan tulang yang patah</li>
+                            <li>Selimuti korban untuk menghangatkan</li>
+                            <li>Segera bawa ke rumah sakit</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Sengatan Listrik -->
+                <div class="accordion accordion-electric">
+                    <button class="accordion-header" onclick="toggleAccordion(this)" aria-expanded="false">
+                        <div style="display: flex; align-items: center;">
+                            <span class="accordion-icon">⚡</span>
+                            <span class="accordion-title-text">Sengatan Listrik</span>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <ul class="accordion-steps">
+                            <li>Matikan sumber listrik terlebih dahulu</li>
+                            <li>Gunakan benda kering bukan logam untuk memisahkan korban dari sumber listrik</li>
+                            <li>Baringkan korban dengan posisi kepala lebih rendah dari tubuh</li>
+                            <li>Periksa pernapasan dan denyut nadi</li>
+                            <li>Jika tidak bernapas, lakukan RJP segera</li>
+                            <li>Tangani luka bakar jika ada</li>
+                            <li>Selimuti korban untuk menghangatkan</li>
+                            <li>Segera bawa ke rumah sakit</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- RJP (Resusitasi Jantung Paru) -->
+                <div class="accordion accordion-cpr">
+                    <button class="accordion-header" onclick="toggleAccordion(this)" aria-expanded="false">
+                        <div style="display: flex; align-items: center;">
+                            <span class="accordion-icon">❤️</span>
+                            <span class="accordion-title-text">RJP (Resusitasi Jantung Paru)</span>
+                        </div>
+                        <span class="accordion-toggle">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <ul class="accordion-steps">
+                            <li>Pastikan area aman untuk korban dan penolong</li>
+                            <li>Periksa respons korban dengan menepuk bahu dan bertanya "Apa Anda baik-baik saja?"</li>
+                            <li>Jika tidak ada respons, segera panggil bantuan medis</li>
+                            <li>Buka jalan napas dengan kepala-tengkuk-dagu</li>
+                            <li>Periksa pernapasan (lihat, dengar, rasakan) selama 5-10 detik</li>
+                            <li>Jika tidak bernapas atau tersengal-sengal:
+                                <ul>
+                                    <li>Berikan 30 kali kompresi dada (kecepatan 100-120 kali/menit, kedalaman 5-6 cm)</li>
+                                    <li>Beri 2 kali napas buatan</li>
+                                    <li>Lanjutkan siklus 30:2</li>
+                                </ul>
+                            </li>
+                            <li>Lanjutkan RJP sampai:
+                                <ul>
+                                    <li>Korban menunjukkan tanda-tanda kehidupan</li>
+                                    <li>Bantuan medis tiba</li>
+                                    <li>Anda kelelahan dan tidak sanggup melanjutkan</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Emergency Cards -->
+                <div class="emergency-cards" id="nomor-darurat">
+                    <div class="emergency-card">
+                        <div class="card-left">
+                            <div class="card-left-row">
+                                <span class="service-icon service-icon--112" aria-hidden="true"><i class="fas fa-ambulance"></i></span>
+                                <div>
+                                    <div class="card-title">Call Center 112</div>
+                                    <p class="card-desc">Ambulance, Kebakaran, Kecelakaan, Mobil Jenazah, Bencana Alam, Gawat Darurat Lainnya.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-right">
+                            <a class="card-link" href="tel:112" aria-label="Hubungi Call Center 112">Call Center 112</a>
+                            <span class="phone-icon" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="emergency-card alt-bg">
+                        <div class="card-left">
+                            <div class="card-left-row">
+                                <span class="service-icon service-icon--fire" aria-hidden="true"><i class="fas fa-fire"></i></span>
+                                <div>
+                                    <div class="card-title">Pemadam Kebakaran</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-right">
+                            <a class="card-link" href="tel:08125005927" aria-label="Hubungi Pemadam Kebakaran">0812-5005-927</a>
+                            <span class="phone-icon" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
+    <div id="site-footer">
+        <footer class="footer">
+            <p>&copy; 2025 PANDAKTA. All rights reserved.</p>
+        </footer>
+    </div>
+
     <!-- Back to Top Button -->
-    <a href="#" class="back-to-top" id="backToTop">
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Kembali ke atas">
         <i class="fas fa-arrow-up"></i>
     </a>
 
@@ -733,11 +1274,13 @@
             document.querySelectorAll('.accordion-header').forEach(h => {
                 h.classList.remove('active');
                 h.nextElementSibling.classList.remove('active');
+                h.setAttribute('aria-expanded', 'false');
             });
             
             if (!isActive) {
                 header.classList.add('active');
                 content.classList.add('active');
+                header.setAttribute('aria-expanded', 'true');
             }
         }
 
@@ -748,9 +1291,11 @@
             if (isActive) {
                 header.classList.remove('active');
                 content.classList.remove('active');
+                header.setAttribute('aria-expanded', 'false');
             } else {
                 header.classList.add('active');
                 content.classList.add('active');
+                header.setAttribute('aria-expanded', 'true');
             }
         }
 
@@ -795,70 +1340,134 @@
                 observer.observe(accordion);
             });
 
-            const emergencyNotice = document.querySelector('.emergency-notice');
-            emergencyNotice.style.opacity = '0';
-            emergencyNotice.style.transform = 'translateY(30px)';
-            emergencyNotice.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(emergencyNotice);
+            const emergencyTarget = document.querySelector('.emergency-cards');
+            if (emergencyTarget) {
+                emergencyTarget.style.opacity = '0';
+                emergencyTarget.style.transform = 'translateY(30px)';
+                emergencyTarget.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(emergencyTarget);
+            }
         });
-    </script>
-    <div id="site-footer"></div>
-    <script>
-      document.addEventListener('DOMContentLoaded', async () => {
-        try {
-          const parser = new DOMParser();
-          const [hRes, fRes] = await Promise.all([
-            fetch('header.html'),
-            fetch('footer.html')
-          ]);
-          const hText = await hRes.text();
-          const fText = await fRes.text();
-          const hDoc = parser.parseFromString(hText, 'text/html');
-          const fDoc = parser.parseFromString(fText, 'text/html');
-          const headerEl = hDoc.querySelector('header');
-          const footerEl = fDoc.querySelector('footer');
-          const headerMount = document.getElementById('site-header');
-          const footerMount = document.getElementById('site-footer');
-          if (headerEl && headerMount) headerMount.innerHTML = headerEl.outerHTML;
-          if (footerEl && footerMount) footerMount.innerHTML = footerEl.outerHTML;
 
-          // Ensure Bootstrap Icons CSS is present
-          if (!document.querySelector('link[href*="bootstrap-icons"]')) {
-            const bi = document.createElement('link');
-            bi.rel = 'stylesheet';
-            bi.href = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css';
-            document.head.appendChild(bi);
-          }
-
-          // Ensure shared footer CSS is present
-          if (!document.querySelector('link[href$="assets/footer.css"]')) {
-            const ftr = document.createElement('link');
-            ftr.rel = 'stylesheet';
-            ftr.href = 'assets/footer.css';
-            document.head.appendChild(ftr);
-          }
-
-          // Highlight active menu item (robust by page + hash or ?s=)
-          const currentPage = location.pathname.split('/').pop() || 'p3k.html';
-          const params = new URLSearchParams(location.search);
-          const sectionFromQuery = params.get('s');
-          const currentHash = location.hash || (sectionFromQuery ? ('#' + sectionFromQuery) : '');
-          document.querySelectorAll('.navbar a[href]').forEach(a => {
+        // Header and navigation scripts
+        document.addEventListener('DOMContentLoaded', async () => {
             try {
-              const aUrl = new URL(a.getAttribute('href'), location.origin);
-              const aPage = aUrl.pathname.split('/').pop();
-              const aHash = aUrl.hash;
-              if (aPage === currentPage) {
-                if (currentHash) {
-                  if (aHash && aHash === currentHash) a.classList.add('active');
-                } else if (!aHash) {
-                  a.classList.add('active');
+                const parser = new DOMParser();
+                const [hRes, fRes] = await Promise.all([
+                    fetch('header.html'),
+                    fetch('footer.html')
+                ]);
+                const hText = await hRes.text();
+                const fText = await fRes.text();
+                const hDoc = parser.parseFromString(hText, 'text/html');
+                const fDoc = parser.parseFromString(fText, 'text/html');
+                const headerEl = hDoc.querySelector('header');
+                const footerEl = fDoc.querySelector('footer');
+                const headerMount = document.getElementById('site-header');
+                const footerMount = document.getElementById('site-footer');
+                if (headerEl && headerMount) {
+                    headerMount.innerHTML = headerEl.outerHTML;
+                } else if (headerMount) {
+                    headerMount.innerHTML = `
+                        <header class="navbar">
+                            <a class="logo" href="index.html">PANDAKTA</a>
+                            <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation">
+                            <label for="menu-toggle" class="hamburger" aria-hidden="true">
+                                <span class="bar"></span>
+                                <span class="bar"></span>
+                                <span class="bar"></span>
+                            </label>
+                            <ul>
+                                <li><a href="index.html"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+                                <li><a href="k3.html"><i class="bi bi-beaker"></i> K3 Laboratorium</a></li>
+                                <li><a href="regulations.html"><i class="bi bi-scale"></i> Peraturan</a></li>
+                                <li><a href="hazards.html"><i class="bi bi-exclamation-triangle-fill"></i> Potensi Bahaya</a></li>
+                                <li><a href="pembuanganlibah.html"><i class="bi bi-recycle"></i> Pembuangan Limbah</a></li>
+                                <li><a href="simbol.html"><i class="bi bi-virus"></i> Simbol B3</a></li>
+                                <li><a href="p3k.html"><i class="bi bi-hospital"></i> P3K</a></li>
+                                <li><a href="msds.html"><i class="bi bi-file-earmark-text"></i> MSDS</a></li>
+                                <li><a href="formulir.html"><i class="bi bi-clipboard-check"></i> Formulir</a></li>
+                            </ul>
+                        </header>`;
                 }
-              }
-            } catch(_) {}
-          });
-        } catch (e) { console.error('Failed loading header/footer:', e); }
-      });
+                if (footerEl && footerMount) {
+                    footerMount.innerHTML = footerEl.outerHTML;
+                } else if (footerMount) {
+                    footerMount.innerHTML = `
+                        <footer class="footer">
+                            <p>&copy; 2025 PANDAKTA. All rights reserved.</p>
+                        </footer>`;
+                }
+
+                // Ensure Bootstrap Icons CSS
+                if (!document.querySelector('link[href*="bootstrap-icons"]')) {
+                    const bi = document.createElement('link');
+                    bi.rel = 'stylesheet';
+                    bi.href = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css';
+                    document.head.appendChild(bi);
+                }
+
+                // Highlight active menu item
+                const currentPage = location.pathname.split('/').pop() || 'p3k.html';
+                document.querySelectorAll('.navbar a[href]').forEach(a => {
+                    try {
+                        const aUrl = new URL(a.getAttribute('href'), location.href);
+                        const aPage = aUrl.pathname.split('/').pop();
+                        if (aPage === currentPage && !aUrl.hash) {
+                            a.classList.add('active');
+                        }
+                    } catch (_) {}
+                });
+
+                // Smooth scrolling for anchor links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function(e) {
+                        const href = this.getAttribute('href');
+                        if (!href || href === '#') return;
+                        const target = document.querySelector(href);
+                        if (target) {
+                            e.preventDefault();
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    });
+                });
+
+                // Add scroll effect to navbar background
+                window.addEventListener('scroll', function() {
+                    const navbar = document.querySelector('.navbar');
+                    if (navbar) {
+                        navbar.style.background = window.scrollY > 100 ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.95)';
+                    }
+                });
+            } catch (e) {
+                console.error('Failed loading header/footer:', e);
+                const headerMount = document.getElementById('site-header');
+                if (headerMount && !headerMount.innerHTML.trim()) {
+                    headerMount.innerHTML = `
+                        <header class="navbar">
+                            <a class="logo" href="index.html">PANDAKTA</a>
+                            <ul class="nav-menu" id="navMenu">
+                                <li><a href="index.html">Dashboard</a></li>
+                                <li><a href="k3.html">K3 Laboratorium</a></li>
+                                <li><a href="regulations.html">Peraturan</a></li>
+                                <li><a href="hazards.html">Potensi Bahaya</a></li>
+                                <li><a href="pembuanganlibah.html">Pembuangan Limbah</a></li>
+                                <li><a href="simbol.html">Simbol B3</a></li>
+                                <li><a href="p3k.html">P3K</a></li>
+                                <li><a href="msds.html">MSDS</a></li>
+                                <li><a href="formulir.html">Formulir</a></li>
+                            </ul>
+                        </header>`;
+                }
+                const footerMount = document.getElementById('site-footer');
+                if (footerMount && !footerMount.innerHTML.trim()) {
+                    footerMount.innerHTML = `
+                        <footer class="footer">
+                            <p>&copy; 2025 PANDAKTA. All rights reserved.</p>
+                        </footer>`;
+                }
+            }
+        });
     </script>
 </body>
 </html>

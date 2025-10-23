@@ -10,18 +10,20 @@
 
 <body>
   <footer>
+    <style>
+      /* Overrides to ensure full-bleed footer */
+      :host, footer { width: 100%; margin: 0 !important; border-radius: 0 !important; }
+      footer { display: block; padding: 0; }
+      footer .footer-container { max-width: 1200px; margin: 0 auto; padding: 1.5rem 1rem; box-sizing: border-box; }
+      footer .footer-bottom { padding: 0.75rem 1rem; box-sizing: border-box; }
+    </style>
     <div class="footer-container">
       <!-- Kolom 1 -->
       <div class="footer-logo">
         <h2>PANDAKTA</h2>
         <p>Panduan Kesehatan dan Keselamatan Kerja (K3)</p>
         <p>Laboratorium Balai POM di Tarakan</p>
-        <div class="social-icons">
-          <a href="#"><i class="bi bi-facebook"></i></a>
-          <a href="#"><i class="bi bi-instagram"></i></a>
-          <a href="#"><i class="bi bi-twitter"></i></a>
-          <a href="#"><i class="bi bi-linkedin"></i></a>
-        </div>
+        
       </div>
 
       <!-- Kolom 2 -->
